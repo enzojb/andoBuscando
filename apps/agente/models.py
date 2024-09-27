@@ -6,5 +6,4 @@ class Agente(models.Model):
     dni = models.CharField(max_length=10)
     telefono = models.CharField(max_length=15)
     matricula = models.CharField(max_length=10)
-    id_usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)
-# Create your models here.
+    usuario = models.OneToOneField(Usuario, on_delete=models.CASCADE)

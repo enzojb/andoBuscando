@@ -3,5 +3,4 @@ from .models import Agente
 
 @admin.register(Agente)
 class AgenteAdmin(admin.ModelAdmin):
-    list_display = ('dni','telefono','matricula','id_usuario')
-# Register your models here.
+    list_display = ('dni','telefono','matricula','usuario')

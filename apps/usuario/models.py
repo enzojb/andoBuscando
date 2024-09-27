@@ -6,5 +6,3 @@ class Usuario(models.Model):
     apellido = models.CharField(max_length=100)
     correo = models.EmailField(max_length=100)
     contraseña = models.CharField(max_length=255)
-    
-# Create your models here.
