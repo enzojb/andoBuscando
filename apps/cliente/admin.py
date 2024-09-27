@@ -3,4 +3,4 @@ from .models import Cliente
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('nombre','apellido','correo','contraseña','dni','telefono')
+    list_display = ('dni','telefono','id_usuario')
