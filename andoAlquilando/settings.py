@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.usuario',
     'apps.cliente',
     'apps.agente',
+    'apps.moderador',
 ]
 
 MIDDLEWARE = [
