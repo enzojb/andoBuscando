@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'apps.cliente',
     'apps.agente',
     'apps.moderador',
+    'apps.busqueda_prop',
+    'apps.propiedad_foto',
+    'apps.agente_busqueda',
+    'apps.propiedad_agente',
 ]
 
 MIDDLEWARE = [
