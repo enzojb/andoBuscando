@@ -2,10 +2,12 @@ from django.db import models
 from apps.localidad.models import Localidad
 from apps.tipo_propiedad.models import Tipo_propiedad
 from apps.propiedad_foto.models import Propiedad_foto
+from apps.agente.models import Agente
 
 class Propiedad_agente(models.Model):
     id = models.AutoField(primary_key=True)
     localidad = models.OneToOneField(Localidad, on_delete=models.CASCADE)
+    agente = models.OneToOneField(Agente, on_delete=models.CASCADE)
     tipo_propiedad = models.OneToOneField(Tipo_propiedad, on_delete=models.CASCADE)
     ambientes = models.CharField(max_length=2)
     dormitorios = models.CharField(max_length=2)
