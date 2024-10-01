@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import TipoPropiedad
+from .models import Tipo_Propiedad
 
-@admin.register(TipoPropiedad)
-class TipoPropiedadAdmin(admin.ModelAdmin):
-    list_display = ('tipo_propiedad')
+@admin.register(Tipo_Propiedad)
+class Tipo_PropiedadAdmin(admin.ModelAdmin):
+    list_display = ('tipo_propiedad',)

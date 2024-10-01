@@ -18,4 +18,3 @@ class Propiedad(models.Model):
     moneda = models.CharField(max_length=30)
     direccion = models.CharField(max_length=30)
     descripcion = models.CharField(max_length=255)
-# Create your models here.
