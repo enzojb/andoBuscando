@@ -4,7 +4,7 @@ from apps.tipo_propiedad.models import Tipo_propiedad
 from apps.propiedad_foto.models import Propiedad_foto
 from apps.agente.models import Agente
 
-class Propiedad_agente(models.Model):
+class Propiedad(models.Model):
     id = models.AutoField(primary_key=True)
     localidad = models.OneToOneField(Localidad, on_delete=models.CASCADE)
     agente = models.OneToOneField(Agente, on_delete=models.CASCADE)

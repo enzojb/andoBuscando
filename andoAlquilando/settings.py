@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'apps.moderador',
     'apps.propiedad_foto',
     'apps.agente_busqueda',
-    'apps.propiedad_agente',
+    'apps.propiedad',
     'apps.tipo_propiedad',
     'apps.tipo_operacion',
     'apps.localidad',
