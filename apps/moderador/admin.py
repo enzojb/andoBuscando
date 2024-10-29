@@ -3,4 +3,4 @@ from .models import Moderador
 
 @admin.register(Moderador)
 class ModeradorAdmin(admin.ModelAdmin):
-    list_display = ()
+    list_display = ('nombre','apellido','correo','contraseña')
