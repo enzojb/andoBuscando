@@ -1,13 +1,9 @@
 from django.db import models
-from apps.localidad.models import Localidad
-from apps.tipo_propiedad.models import Tipo_Propiedad
-from apps.agente.models import Agente
 
 class Propiedad(models.Model):
-    id = models.AutoField(primary_key=True)
-    localidad = models.OneToOneField(Localidad, on_delete=models.CASCADE)
-    agente = models.OneToOneField(Agente, on_delete=models.CASCADE)
-    tipo_propiedad = models.OneToOneField(Tipo_Propiedad, on_delete=models.CASCADE)
+    localidad = models.ForeignKey('localidad.Localidad', on_delete=models.CASCADE)
+    agente = models.ForeignKey('agente.Agente', on_delete=models.CASCADE)
+    tipo_propiedad = models.ForeignKey('tipo_propiedad.TipoPropiedad', on_delete=models.CASCADE)
     ambientes = models.CharField(max_length=2)
     dormitorios = models.CharField(max_length=2)
     banios = models.CharField(max_length=2)
