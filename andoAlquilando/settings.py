@@ -44,15 +44,8 @@ LOCAL_APPS = [
     'apps.cliente',
     'apps.agente',
     'apps.moderador',
-    'apps.propiedad_foto',
-    'apps.agente_busqueda',
     'apps.propiedad',
-    'apps.tipo_propiedad',
-    'apps.tipo_operacion',
-    'apps.localidad',
-    'apps.busqueda_tipo_prop',
-    'apps.busqueda_tipo_oper',
-    'apps.busqueda',
+    'apps.publicacion',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
