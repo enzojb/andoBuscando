@@ -14,9 +14,13 @@ class Propiedad(models.Model):
 class TipoOperacion(models.Model):
     tipo_operacion = models.CharField(max_length=100)
 
+    def __str__(self) -> str:
+        return self.tipo_operacion
+
 class TipoPropiedad(models.Model):
     tipo_propiedad = models.CharField(max_length=100)
-
+    def __str__(self) -> str:
+        return self.tipo_propiedad
 class PropiedadFoto(models.Model):
     propiedad = models.ForeignKey(Propiedad, on_delete=models.CASCADE)
     ubicacion_url = models.CharField(max_length=255)
@@ -24,3 +28,5 @@ class PropiedadFoto(models.Model):
 
 class Localidad(models.Model):
     localidad = models.CharField(max_length=100)
+    def __str__(self) -> str:
+        return self.localidad
