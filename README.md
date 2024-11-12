@@ -1,4 +1,4 @@
-# andoalquilando
+# andoBuscando
 IFTS Nº 18 - Backend - Proyecto integrador
 
 Título: Buscador de Propiedades con Servicio de Búsqueda Personalizada

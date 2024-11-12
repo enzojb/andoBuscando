@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicaciones</title>
+</head>
+<body>
+    <h1>Lista de publicaciones</h1>
+    <ul>
+        {% for publicacion in publicaciones %}
+            <li> {{publicacion.tipo_propiedad}} {{publicacion.localidad}} - ({{publicacion.tipo_operacion}})  </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
