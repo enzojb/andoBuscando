@@ -8,47 +8,107 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Home New account / Sign in </h1>               
+                        <h1 class="page-title">Registrarse / Iniciar sesión</h1>               
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End page header -->
- 
+        <!-- End page header -->        
+             <!-- Mostrar mensajes -->
+    <div class="container">
+        {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <!-- Área de registro -->
+    <div class="register-area" style="background-color: rgb(249, 249, 249);">
+        <div class="container">
+            <!-- Sección de registro -->
+            <div class="col-md-6">
+                <div class="box-for overflow">
+                    <div class="col-md-12 col-xs-12 register-blocks">
+                        <h2>Registrate:</h2>
+                        <form method="post" action="{% url 'registro_cliente' %}">
+                            {% csrf_token %}
 
-        <!-- register-area -->
-        <div class="register-area" style="background-color: rgb(249, 249, 249);">
-            <div class="container">
+                            <!-- Errores del formulario -->
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
 
-                <div class="col-md-6">
-                    <div class="box-for overflow">
-                        <div class="col-md-12 col-xs-12 register-blocks">
-                            <h2>New account : </h2> 
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="text" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-default">Register</button>
-                                </div>
-                            </form>
-                        </div>
+                            <!-- Campo de nombre de usuario -->
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
+                                <input type="text" name="username" value="{{ form.username.value }}" id="{{ form.username.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo de nombre -->
+                            <div class="form-group">
+                                <label for="{{ form.first_name.id_for_label }}">Nombre(s)</label>
+                                <input type="text" name="first_name" value="{{ form.first_name.value }}" id="{{ form.first_name.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo de apellido -->
+                            <div class="form-group">
+                                <label for="{{ form.last_name.id_for_label }}">Apellido(s)</label>
+                                <input type="text" name="last_name" value="{{ form.last_name.value }}" id="{{ form.last_name.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo de DNI -->
+                            <div class="form-group">
+                                <label for="{{ form.dni.id_for_label }}">DNI</label>
+                                <input type="text" name="dni" value="{{ form.dni.value }}" id="{{ form.dni.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo de teléfono -->
+                            <div class="form-group">
+                                <label for="{{ form.telefono.id_for_label }}">Teléfono</label>
+                                <input type="text" name="telefono" value="{{ form.telefono.value }}" id="{{ form.telefono.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo de email -->
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">Email</label>
+                                <input type="email" name="email" value="{{ form.email.value }}" id="{{ form.email.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo de contraseña -->
+                            <div class="form-group">
+                                <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+                                <input type="password" name="password1" value="{{ form.password1.value }}" id="{{ form.password1.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Campo para confirmar contraseña -->
+                            <div class="form-group">
+                                <label for="{{ form.password2.id_for_label }}">Repetir Contraseña</label>
+                                <input type="password" name="password2" value="{{ form.password2.value }}" id="{{ form.password2.id_for_label }}" class="form-control" required>
+                            </div>
+
+                            <!-- Botón de registro -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-default">Registrarse</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
                 <div class="col-md-6">
                     <div class="box-for overflow">                         
                         <div class="col-md-12 col-xs-12 login-blocks">
-                            <h2>Login : </h2> 
+                            <h2>Iniciá sesión : </h2> 
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label for="email">Email</label>
@@ -59,18 +119,11 @@
                                     <input type="password" class="form-control" id="password">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default"> Log in</button>
+                                    <button type="submit" class="btn btn-default">Ingresar</button>
                                 </div>
                             </form>
                             <br>
                             
-                            <h2>Social login :  </h2> 
-                            
-                            <p>
-                            <a class="login-social" href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a> 
-                            <a class="login-social" href="#"><i class="fa fa-google-plus"></i>&nbsp;Gmail</a> 
-                            <a class="login-social" href="#"><i class="fa fa-twitter"></i>&nbsp;Twitter</a>  
-                            </p> 
                         </div>
                         
                     </div>
