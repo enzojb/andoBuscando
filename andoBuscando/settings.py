@@ -107,6 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configura el modelo de usuario personalizado para la autenticación
+
+AUTH_USER_MODEL = 'usuario.Usuario'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -132,3 +136,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirecciones
+
+LOGIN_REDIRECT_URL = '/'

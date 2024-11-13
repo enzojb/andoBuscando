@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from apps.publicacion.models import Publicacion
 
-# Create your views here.
 class PublicacionView(TemplateView):
     template_name = "lista_publicaciones.html"
 
