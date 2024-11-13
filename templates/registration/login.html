@@ -7,7 +7,7 @@
     <!-- Mostrar mensajes -->
     <div class="container">
         {% if messages %}
-            <div class="alert alert-success">
+            <div class="alert alert-success fade-out">
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
@@ -27,11 +27,11 @@
     <!-- End page header -->        
 
     <!-- Área de inicio de sesión -->
-    <div class="register-area" style="background-color: rgb(249, 249, 249);">
-        <div class="container">
+    <div class="d-flex justify-content-center align-items-center" style="background-color: rgb(249, 249, 249); min-height: 60vh; display: flex; justify-content: center; align-items: center;">
+        <div class="register-area" style="background-color: rgb(249, 249, 249); width: 100%; max-width: 500px; padding: 20px; border-radius: 8px;">
 
-             <!-- Sección de inicio de sesión -->
-            <div class="col-md-6">
+            <!-- Sección de inicio de sesión -->
+            <div class="col-md-12">
                 <div class="box-for overflow">                         
                     <div class="col-md-12 col-xs-12 login-blocks">
                         <h2>Iniciá sesión : </h2> 
