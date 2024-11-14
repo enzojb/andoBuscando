@@ -23,15 +23,15 @@
                     <form action="" method="">                        
                         <div class="wizard-header">
                             <h3>
-                                <b>Sube</b> TU PROPIEDAD <br>
-                                <!--<small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small> -->
+                                <b>Submit</b> YOUR PROPERTY <br>
+                                <small>Lorem ipsum dolor sit amet, consectetur adipisicing.</small>
                             </h3>
                         </div>
 
                         <ul>
-                            <li><a href="#step1" data-toggle="tab">Paso 1 </a></li>
-                            <li><a href="#step3" data-toggle="tab">Paso 2 </a></li>
-                            <li><a href="#step4" data-toggle="tab">Finalizar</a></li>
+                            <li><a href="#step1" data-toggle="tab">Step 1 </a></li>
+                            <li><a href="#step2" data-toggle="tab">Step 2 </a></li>
+                            <li><a href="#step3" data-toggle="tab">Finished </a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -42,7 +42,7 @@
                                     <div class="col-sm-4 col-sm-offset-1">
                                         <div class="picture-container">
                                             <div class="picture">
-                                                <img src="{% static 'assets/img/default-property.jpg' %}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                                <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview" title=""/>
                                                 <input type="file" id="wizard-picture">
                                             </div> 
                                         </div>
@@ -74,13 +74,13 @@
                             </div>
                             <!--  End step 1 -->
 
-                            <div class="tab-pane" id="step3">
+                            <div class="tab-pane" id="step2">
                                 <h4 class="info-text"> Cuentanos un poco mas sobre la propiedad </h4>
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <div class="col-sm-12"> 
                                             <div class="form-group">
-                                                <label>Descripcion:</label>
+                                                <label>Descripcion :</label>
                                                 <textarea name="discrition" class="form-control" ></textarea>
                                             </div> 
                                         </div> 
@@ -90,48 +90,47 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Localidad :</label>
-                                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Localidad">
-                                                    <option>Agronomia</option>
+                                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Selecciona la localidad">
+                                                    <option>Palermo</option>
+                                                    <option>Recoleta</option>
                                                     <option>Belgrano</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <div class="form-group">
-                                                    <label>Direccion <small>(requerido)</small></label>
-                                                    <input name="propertyadress" type="text" class="form-control" placeholder="Av Santa Fe 2014">
-                                                </div>
+                                                <label>direccion <small>(required)</small></label>
+                                                <input name="propertyname" type="text" class="form-control" placeholder="Av. santa fe 2001">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 padding-top-15">                                                   
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>tipo de propiedad :</label>
+                                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Seecciona el tipo">
+                                                    <option>PH</option>
+                                                    <option>Departamento</option>
+                                                    <option>Casa</option>
+                                                    <option>Oficina</option>
+                                                </select>
                                             </div>
                                         </div>
                                         
-                                    </div>
-                                    <div class="col-sm-12 padding-top-15">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label>Tipo de propiedad <small>(requerido)</small></label>
-                                                <select id="basic" class="selectpicker show-tick form-control">
-                                                    <option disabled selected>Seleccione una opcion </option>
-                                                    <option>PH</option>
-                                                    <option>Casa</option>
-                                                    <option>Departamento</option> 
-                                                </select>
-                                        </div>
-                                    </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="property-images">Elige mas imagenes :</label>
+                                                <label for="property-images">sube mas imagenes :</label>
                                                 <input class="form-control" type="file" id="property-images">
                                             </div>
                                         </div>
+                                    </div>
                                     <div class="col-sm-12 padding-top-15">
-
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="price-range">ambientes:</label>
                                                 <input type="text" class="span2" value="" data-slider-min="0" 
                                                        data-slider-max="20" data-slider-step="1" 
-                                                       data-slider-value="[0,4]" id="min-baths" ><br />
+                                                       data-slider-value="5" id="min-baths" ><br />
                                                 <b class="pull-left color">1</b> 
                                                 <b class="pull-right color">20</b>
                                             </div>
@@ -140,27 +139,31 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="property-geo">Metros cuadrados de la propiedad (m2) :</label>
-                                                <input type="text" class="span2" value="" data-slider-min="20" 
+                                                <input type="text" class="span2" value="" data-slider-min="0" 
                                                 data-slider-max="1200" data-slider-step="1" 
-                                                data-slider-value="[20,450]" id="property-geo" ><br />
+                                                data-slider-value="70" id="property-geo" ><br />
                                          <b class="pull-left color">20m2</b> 
                                          <b class="pull-right color">1200m2</b>
                                             </div>
-                                        </div>   
+                                        </div>
                                     </div>
+
+                                    
                                     
                                     <br>
                                 </div>
                             </div>
                             <!-- End step 2 -->
 
-                            <div class="tab-pane" id="step4">                                        
+
+
+                            <div class="tab-pane" id="step3">                                        
                                 <h4 class="info-text"> Finalizar y publicar </h4>
                                 <div class="row">  
                                     <div class="col-sm-12">
                                         <div class="">
                                             <p>
-                                                <label><strong>Terminos y condiciones</strong></label>
+                                                <label><strong>Terminos y condiciones:</strong></label>
                                                 Al aceptar los terminos y condicones estas accediendo a
                                                 que AndoBuscando comparta tu propiedad e informacion 
                                                 personal.
@@ -168,7 +171,7 @@
 
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox"/> <strong>Aceptar terminos y condiciones.</strong>
+                                                    <input type="checkbox" /> <strong>Aceptar terminos y condiciones.</strong>
                                                 </label>
                                             </div> 
 
@@ -183,7 +186,7 @@
                         <div class="wizard-footer">
                             <div class="pull-right">
                                 <input type='button' class='btn btn-next btn-primary' name='next' value='Next' />
-                                <input type='button' class='btn btn-finish btn-primary ' name='finish' value='Finish'/>
+                                <input type='button' class='btn btn-finish btn-primary ' name='finish' value='Finish' />
                             </div>
 
                             <div class="pull-left">
