@@ -95,8 +95,8 @@
                                         </ul>
                                         <h5>Mi cuenta</h5>
                                         <ul>
-                                            <li><a href="user-profile.html">Perfil</a></li>
-                                            <li><a href="change-password.html">Cambiar contraseña</a></li>
+                                            <li><a href="{% url 'perfil' %}">Perfil</a></li>
+                                            <li><a href="{% url 'cambiar_contrasenia' %}">Cambiar contraseña</a></li>
                                             <li><form action="{% url 'logout' %}" method="post">
                                                 {% csrf_token %}
                                                 <button type="submit">Cerrar sesión</button>
