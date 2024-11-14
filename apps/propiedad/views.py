@@ -17,6 +17,6 @@ class PropiedadCargaView(TemplateView):
 
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
-        context["carga propiedades"] = Propiedad.objects.all()
+        context["cargar_propiedad"] = Propiedad.objects.all()
         return context
     
