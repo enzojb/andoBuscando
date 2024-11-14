@@ -45,7 +45,7 @@ class EditarPerfilView(UpdateView):
     success_url = reverse_lazy('perfil')
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if not request.user.is_authenticated:
             return redirect('index') 
         return super().get(request, *args, **kwargs)
 
@@ -58,7 +58,6 @@ class EditarPerfilView(UpdateView):
         return context
 
     def form_valid(self, form):
-        form.instance = self.request.user
         form.save()
         messages.success(self.request, 'Tu perfil ha sido actualizado exitosamente.')
         return super().form_valid(form)
@@ -86,9 +85,8 @@ class EditarContraseniaView(UpdateView):
         return self.request.user
 
     def form_valid(self, form):
-        user = self.request.user
-        user.set_password(form.cleaned_data['password'])
-        user.save()
-        update_session_auth_hash(self.request, user)
+        self.request.user.set_password(form.cleaned_data['password_current'])
+        self.request.user.save()
+        update_session_auth_hash(self.request, self.request.user)
         messages.success(self.request, 'Tu contraseña ha sido cambiada exitosamente.')
         return super().form_valid(form)

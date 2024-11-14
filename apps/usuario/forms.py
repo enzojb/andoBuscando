@@ -24,27 +24,20 @@ class EditarPerfilForm(forms.ModelForm):
             raise ValidationError("La contraseña actual introducida es incorrecta.")
         return password
     
-class EditarContraseniaForm(forms.ModelForm):
-    password_current = forms.CharField(widget=forms.PasswordInput, label="Contraseña actual", required=True)
-    password = forms.CharField(widget=forms.PasswordInput, label="Nueva contraseña", required=True)
-    repassword = forms.CharField(widget=forms.PasswordInput, label="Confirmar nueva contraseña", required=True)
+class EditarContraseniaForm(UserCreationForm):
+    password_current = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña actual'}), label="Contraseña actual", required=True)
 
     class Meta:
         model = Cliente
-        fields = ['password'] 
+        fields = [] 
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget = forms.PasswordInput(attrs={'placeholder': 'Nueva contraseña'})
+        self.fields['password2'].widget = forms.PasswordInput(attrs={'placeholder': 'Confirmar nueva contraseña'})
+    
     def clean_password_current(self):
-        password = self.cleaned_data['password_current']
-        if not self.instance.check_password(password):
+        password_current = self.cleaned_data.get('password_current')
+        if not self.instance.check_password(password_current):
             raise ValidationError("La contraseña actual introducida es incorrecta.")
-        return password
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get('password')
-        repassword = cleaned_data.get('repassword')
-
-        if password and repassword and password != repassword:
-            raise ValidationError("Las nuevas contraseñas no coinciden.")
-        
-        return cleaned_data
+        return password_current
