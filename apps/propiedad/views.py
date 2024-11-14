@@ -20,3 +20,10 @@ class PropiedadCargaView(TemplateView):
         context["cargar_propiedad"] = Propiedad.objects.all()
         return context
     
+class PropiedadDetalleView(TemplateView):
+    template_name = "detalle_propiedad.html"
+
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context["detalles_propiedad"] = Propiedad.objects.all()
+        return context
