@@ -11,3 +11,11 @@ class PublicacionView(TemplateView):
         context["publicaciones"] = Publicacion.objects.all()
         return context
     
+class PublicacionCargaView(TemplateView):
+    template_name = "carga_publicacion.html"
+
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context["cargar_publicacion"] = Publicacion.objects.all()
+        return context
+    

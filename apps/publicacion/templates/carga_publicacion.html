@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="page-head-content">
-                <h1 class="page-title">Publica un inmueble</h1>               
+                <h1 class="page-title">Publica una búsqueda</h1>               
             </div>
         </div>
     </div>
@@ -23,8 +23,8 @@
                     <form action="" method="">                        
                         <div class="wizard-header">
                             <h3>
-                                <b>Carga</b> UNA PROPIEDAD <br>
-                                <small>En tres simples pasos podrás publicarla.</small>
+                                <b>Carga</b> TUS REQUISITOS <br>
+                                <small>En tres simples pasos podrás publicar.</small>
                             </h3>
                         </div>
 
@@ -35,25 +35,17 @@
                         </ul>
 
                         <div class="tab-content">
-
                             <div class="tab-pane" id="step1">
                                 <div class="row p-b-15  ">
                                     <h4 class="info-text"> Empecemos con la informacion básica</h4>
-                                    <div class="col-sm-4 col-sm-offset-1">
-                                        <div class="picture-container">
-                                            <div class="picture">
-                                                <img src="assets/img/default-property.jpg" class="picture-src" id="wizardPicturePreview" title=""/>
-                                                <input type="file" id="wizard-picture">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
+
+                                    <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Título <small>(requerido)</small></label>
                                             <input name="propertyname" type="text" class="form-control" placeholder="Departamento 2 ambientes...">
                                         </div>
                                         <div class="form-group">
-                                            <label>Precio de la propiedad <small>(requerido)</small></label>
+                                            <label>Precio máximo <small>(requerido)</small></label>
                                             <select id="basic" class="selectpicker show-tick form-control">
                                                 <option disabled selected> Moneda </option>
                                                 <option>Dolar Estadounidense (USD)</option>
@@ -75,7 +67,7 @@
                             <!--  End step 1 -->
 
                             <div class="tab-pane" id="step2">
-                                <h4 class="info-text"> Contanos un poco más sobre la propiedad </h4>
+                                <h4 class="info-text"> Contanos un poco más sobre tu búsqueda </h4>
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <div class="col-sm-12"> 
@@ -87,7 +79,7 @@
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Localidad :</label>
                                                 <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Selecciona la localidad">
@@ -97,15 +89,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Dirección <small>(required)</small></label>
-                                                <input name="propertyname" type="text" class="form-control" placeholder="Av. santa fe 2001">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 padding-top-15">                                                   
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Tipo de propiedad :</label>
                                                 <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Seecciona el tipo">
@@ -116,16 +100,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="property-images">Subi más imágenes :</label>
-                                                <input class="form-control" type="file" id="property-images">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 padding-top-15">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="price-range">Ambientes:</label>
                                                 <input type="text" class="span2" value="" data-slider-min="0" 
@@ -135,27 +110,17 @@
                                                 <b class="pull-right color">20</b>
                                             </div>
                                         </div>
-
+                                    </div>
+                                    
+                                    <div class="col-sm-12">
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="property-geo">Metros cuadrados de la propiedad (m2) :</label>
-                                                <input type="text" class="span2" value="" data-slider-min="0" 
-                                                data-slider-max="1200" data-slider-step="1" 
-                                                data-slider-value="70" id="property-geo" ><br />
-                                         <b class="pull-left color">20m2</b> 
-                                         <b class="pull-right color">1200m2</b>
-                                            </div>
+                                            <div class="form-group"></div>
                                         </div>
                                     </div>
-
-                                    
-                                    
                                     <br>
                                 </div>
                             </div>
                             <!-- End step 2 -->
-
-
 
                             <div class="tab-pane" id="step3">                                        
                                 <h4 class="info-text"> Finalizar y publicar </h4>
@@ -165,8 +130,7 @@
                                             <p>
                                                 <label><strong>Términos y condiciones:</strong></label>
                                                 Al aceptar los términos y condiciones estás accediendo a
-                                                que AndoBuscando comparta tu propiedad e información 
-                                                personal.
+                                                que AndoBuscando comparta tu información.
                                             </p>
 
                                             <div class="checkbox">
