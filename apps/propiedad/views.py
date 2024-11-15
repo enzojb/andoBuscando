@@ -5,7 +5,6 @@ from django.views.generic import TemplateView, CreateView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm
 
-# Create your views here.
 class PropiedadView(TemplateView):
     template_name = "lista_propiedades.html"
 
