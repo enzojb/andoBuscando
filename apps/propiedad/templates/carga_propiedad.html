@@ -8,124 +8,121 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="3b1ovzof2iNq3xFazMpvddoXOTUZrYzbjGwnA2i8Vhx2RzMdvPaqzoBEUWzkZzKK">
-            <p>
-        <label for="id_titulo">Titulo:</label>
-        <input type="text" name="titulo" value="sin titulo" maxlength="50" required id="id_titulo">
-        
-        
-      </p>
+        <p>
+    <label for="id_titulo">Titulo:</label>
+    <input type="text" name="titulo" value="sin titulo" maxlength="50" required id="id_titulo">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_moneda">Moneda:</label>
+    <input type="text" name="moneda" maxlength="30" required id="id_moneda">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_precio">Precio:</label>
+    <input type="number" name="precio" step="0.01" required id="id_precio">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_tipo_operacion">Tipo operacion:</label>
+    <select name="tipo_operacion" id="id_tipo_operacion">
+  <option value="1">Alquiler</option>
+
+  <option value="2">Compra</option>
+
+  <option value="3">Venta</option>
+
+</select>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_descripcion">Descripcion:</label>
+    <textarea name="descripcion" cols="40" rows="10" required id="id_descripcion">
+</textarea>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_localidad">Localidad:</label>
+    <select name="localidad" required id="id_localidad">
+  <option value="" selected>---------</option>
+
+  <option value="1">Agronomía</option>
+
+  <option value="2">Almagro</option>
+
+  <option value="3">Balvanera</option>
+
+</select>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_direccion">Direccion:</label>
+    <input type="text" name="direccion" maxlength="55" required id="id_direccion">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_tipo_propiedad">Tipo propiedad:</label>
+    <select name="tipo_propiedad" required id="id_tipo_propiedad">
+  <option value="" selected>---------</option>
+
+  <option value="1">Casa</option>
+
+  <option value="2">Departamento</option>
+
+  <option value="3">PH</option>
+
+  <option value="4">Quinta</option>
+
+  <option value="5">Garage</option>
+
+  <option value="6">Oficina comercial</option>
+
+  <option value="7">Local comercial</option>
+
+</select>
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_ambientes">Ambientes:</label>
+    <input type="number" name="ambientes" min="0" required id="id_ambientes">
+    
+    
+  </p>
+
+  
+  <p>
+    <label for="id_metros_cuadrados">Metros cuadrados:</label>
+    <input type="number" name="metros_cuadrados" min="0" required id="id_metros_cuadrados">
+    
     
       
-      <p>
-        <label for="id_moneda">Moneda:</label>
-        <input type="text" name="moneda" maxlength="30" required id="id_moneda">
-        
-        
-      </p>
     
-      
-      <p>
-        <label for="id_precio">Precio:</label>
-        <input type="number" name="precio" step="0.01" required id="id_precio">
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_tipo_operacion">Tipo operacion:</label>
-        <select name="tipo_operacion" id="id_tipo_operacion">
-      <option value="1">Alquiler</option>
-    
-      <option value="2">Compra</option>
-    
-      <option value="3">Venta</option>
-    
-    </select>
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_descripcion">Descripcion:</label>
-        <textarea name="descripcion" cols="40" rows="10" required id="id_descripcion">
-    </textarea>
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_localidad">Localidad:</label>
-        <select name="localidad" required id="id_localidad">
-      <option value="" selected>---------</option>
-    
-      <option value="1">Agronomía</option>
-    
-      <option value="2">Almagro</option>
-    
-      <option value="3">Balvanera</option>
-    
-    </select>
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_direccion">Direccion:</label>
-        <input type="text" name="direccion" maxlength="55" required id="id_direccion">
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_tipo_propiedad">Tipo propiedad:</label>
-        <select name="tipo_propiedad" required id="id_tipo_propiedad">
-      <option value="" selected>---------</option>
-    
-      <option value="1">Casa</option>
-    
-      <option value="2">Departamento</option>
-    
-      <option value="3">PH</option>
-    
-      <option value="4">Quinta</option>
-    
-      <option value="5">Garage</option>
-    
-      <option value="6">Oficina comercial</option>
-    
-      <option value="7">Local comercial</option>
-    
-    </select>
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_ambientes">Ambientes:</label>
-        <input type="number" name="ambientes" min="0" required id="id_ambientes">
-        
-        
-      </p>
-    
-      
-      <p>
-        <label for="id_metros_cuadrados">Metros cuadrados:</label>
-        <input type="number" name="metros_cuadrados" min="0" required id="id_metros_cuadrados">
-        
-        
-          
-        
-      </p>
+  </p>
             <button type="submit">cargar</button>
-        </form>
     </form>
 </body>
 </html>
