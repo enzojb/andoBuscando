@@ -67,6 +67,8 @@ $(document).ready(function () {
     $('#price-range').slider();
     $('#property-geo').slider();
     $('#min-baths').slider();
+    $('#id_ambientes').slider();
+    $('#id_metros_cuadrados').slider();
     $('#min-bed').slider();
 
     var RGBChange = function () {
