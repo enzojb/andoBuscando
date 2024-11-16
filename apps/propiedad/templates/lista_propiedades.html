@@ -99,27 +99,34 @@
 
             <div class="col-md-12 clear "> 
                 <div id="list-type" class="proerty-th">
+                    {% for propiedad in propiedades%}
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
-                                <a href="/propiedad/detalles_propiedad" ><img src="{% static 'assets/img/demo/property-3.jpg' %}"></a>
+                                <a href="/propiedad/detalles_propiedad" >    
+                                {% if propiedad.foto %}
+                                    <img src="{{ propiedad.foto.url }}">
+                                {% else %}
+                                    <p>No hay imagen disponible</p>
+                                {% endif %}</a>
                             </div>
 
                             <div class="item-entry overflow">
-                                <h5><a href="/propiedad/detalles_propiedad"> Casa 1 </a></h5>
+                                <h5><a href="/propiedad/detalles_propiedad">{{propiedad.titulo}}</a></h5>
                                 <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000</span>
+                                <span class="pull-left"><b> Moneda: </b>{{propiedad.moneda}} </span>
+                                <span class="proerty-price pull-right"> $ {{propiedad.precio}}</span>
                                 <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                 <div class="property-icon">
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
+                                    <label>Amb: {{propiedad.ambientes}}|</label>
+                                    <label>Fecha public: {{propiedad.fecha_creacion}}</label>
                                 </div>
                             </div>
 
                         </div>
                     </div> 
-
+                    {% endfor %}
+                    <!--
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
@@ -353,7 +360,7 @@
                         </div>
                     </div> 
                 </div>
-            </div>
+            </div> -->
 
             <div class="col-md-12 clear"> 
                 <div class="pull-right">

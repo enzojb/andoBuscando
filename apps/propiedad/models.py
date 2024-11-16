@@ -6,7 +6,7 @@ class Propiedad(models.Model):
     tipo_propiedad = models.ForeignKey('propiedad.TipoPropiedad', on_delete=models.CASCADE)
     tipo_operacion = models.ForeignKey('propiedad.TipoOperacion', on_delete=models.CASCADE, default='')
     titulo= models.CharField(max_length=50, default='sin titulo')
-    foto = models.ImageField(upload_to='images', null=True)
+    foto = models.ImageField(upload_to='images', null=True, blank=True)
     ambientes = models.PositiveIntegerField()
     metros_cuadrados = models.PositiveIntegerField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
