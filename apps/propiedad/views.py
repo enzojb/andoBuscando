@@ -65,9 +65,9 @@ class PropiedadDetalleView(TemplateView):
 
 class ContactarAgenteView(LoginRequiredMixin,TemplateView):
     template_name = 'contactar_agente.html'
-    login_url = "/signup/"
+    login_url = "/login/"
     redirect_field_name = "redirect_to"
-    raise_exception = True
+    raise_exception = False
 
     def get(self,request):
         return self.render_to_response({})
