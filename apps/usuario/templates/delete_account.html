@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ANDO BUSCANDO | Eliminar cuenta{% endblock %}
+
+{% block content %}
+<div class="page-head"> 
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Eliminar cuenta</h1>               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center" style="background-color: rgb(249, 249, 249); min-height: 60vh; display: flex; text-align: center; justify-content: center; align-items: center;">
+    <div class="register-area" style="background-color: rgb(249, 249, 249); width: 100%; padding: 20px;">
+
+
+    <h2>¿Estás seguro/a que deseás eliminar tu cuenta de forma permanente?</h2>
+    <br>
+    <form method="post" action="{% url 'eliminar_cuenta' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
+      <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+
+    </div>
+</div>
+{% endblock %}
