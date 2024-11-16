@@ -9,6 +9,7 @@ from django.conf import settings
 from PIL import Image
 import io
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 class PropiedadView(TemplateView):
     template_name = "lista_propiedades.html"
@@ -61,3 +62,12 @@ class PropiedadDetalleView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["detalles_propiedad"] = Propiedad.objects.all()
         return context
+
+class ContactarAgenteView(LoginRequiredMixin,TemplateView):
+    template_name = 'contactar_agente.html'
+    login_url = "/signup/"
+    redirect_field_name = "redirect_to"
+    raise_exception = True
+
+    def get(self,request):
+        return self.render_to_response({})

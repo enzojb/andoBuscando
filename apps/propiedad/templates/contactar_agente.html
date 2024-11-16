@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ANDO BUSCANDO | Contactar Usuario{% endblock %}
+
+{% block content %}
+
+ <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">Contactar Agente</h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header -->
+
+        <!-- property area -->
+        <div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+            <div class="container">  
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2"> 
+                        <div class="" id="contact1">                        
+                            <div class="row">
+                           
+                            </div>
+                            <!-- /.row -->
+                            
+                            <h2>Chat</h2>
+                            <form>
+                                <div class="row">                                
+                                    <div class="col-sm-12">
+                                        <div >
+                                            <label for="subject">Título</label>
+                                            <input type="text" class="form-control" id="subject">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="message">Mensaje</label>
+                                            <textarea id="message" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 text-center">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar mensaje</button>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </form>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
