@@ -15,6 +15,22 @@
                         <div class="title-line wow fadeInRight animated"></div>
                     </div>
                     <br><br>
+                    {% if publicaciones %}
+                        <ul>
+                            {% for publicacion in publicaciones %}
+                                <li>
+                                    <a href="{% url 'editar_publicacion' pk=publicacion.pk %}">Editar</a>
+                                    <a href="{% url 'eliminar_publicacion' pk=publicacion.pk %}" class="btn btn-danger">Eliminar</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No tienes publicaciones.</p>
+                    {% endif %}
+
+                    <a href="{% url 'crear_publicacion' %}" class="btn btn-primary">Crear nueva publicación</a>
+
+
                     <p class="intro">En este espacio podrás cargar la información referida a tu búsqueda.</p>
                         <a href="single.html" class="btn btn-default btn-border">Crear búsqueda</a>
                 </section>   
