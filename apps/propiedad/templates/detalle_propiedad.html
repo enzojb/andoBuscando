@@ -44,7 +44,7 @@
                         <div class="section">
                             <h4 class="s-property-title">Descripción</h4>
                             <div class="s-property-content">
-                                <p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
+                                <p>{{propiedad.descripcion}}</p>
                             </div>
                         </div>
                         <!-- End description area  -->
@@ -56,27 +56,27 @@
                             <ul class="additional-details-list clearfix">
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Localidad</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Palermo</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.localidad}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Dirección</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Beruti 3325</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.direccion}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Tipo propiedad</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Casa</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.tipo_propiedad}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Ambientes</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">3</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.ambientes}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Metros cuadrados</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">3500m2</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.metros_cuadrados}}m2</span>
                                 </li>
 
                             </ul>
@@ -141,9 +141,9 @@
                         <div class="dealer-content">
                             <div class="inner-wrapper">
                                 <div class="single-property-header">                                          
-                                    <h1 class="property-title">Villa in Coral Gables</h1>
+                                    <h1 class="property-title">{{propiedad.titulo}}</h1>
                                     <span class="property-price">ARS</span>
-                                    <span class="property-price">$825,000</span>
+                                    <span class="property-price">${{propiedad.precio}}</span>
                                 </div>
 
                                 <div class="property-meta entry-meta clearfix ">   
@@ -154,7 +154,7 @@
                                         </span>
                                         <span class="property-info-entry">
                                             <span class="property-info-label">Estado</span>
-                                            <span class="property-info-value">En Venta</span>
+                                            <span class="property-info-value">{{propiedad.tipo_operacion}}</span>
                                         </span>
                                     </div>
 
@@ -164,7 +164,7 @@
                                         </span>
                                         <span class="property-info-entry">
                                             <span class="property-info-label">Tamaño</span>
-                                            <span class="property-info-value">3500<b class="property-info-unit">m2</b></span>
+                                            <span class="property-info-value">{{propiedad.metros_cuadrados}}<b class="property-info-unit">m2</b></span>
                                         </span>
                                     </div>
                                 </div>

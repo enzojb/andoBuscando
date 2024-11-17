@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm
 import os
@@ -55,13 +55,11 @@ class CrearPropiedadView(CreateView):
         propiedad.save()  # Guardar el modelo con la imagen procesada
         return super().form_valid(form)
 
-class PropiedadDetalleView(TemplateView):
+class PropiedadDetalleView(DetailView):
+    model = Propiedad
     template_name = "detalle_propiedad.html"
-
-    def get_context_data(self, **kwargs: Any):
-        context = super().get_context_data(**kwargs)
-        context["detalles_propiedad"] = Propiedad.objects.all()
-        return context
+    context_object_name = 'propiedad'
+    pk_url_kwarg = 'id'
 
 class ContactarAgenteView(LoginRequiredMixin,TemplateView):
     template_name = 'contactar_agente.html'

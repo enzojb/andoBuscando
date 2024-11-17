@@ -112,7 +112,7 @@
                             </div>
 
                             <div class="item-entry overflow">
-                                <h5><a href="/propiedad/detalles_propiedad">{{propiedad.titulo}}</a></h5>
+                                <h5><a href="{% url 'detalles_propiedad' propiedad.id %}">{{propiedad.titulo}}</a></h5>
                                 <div class="dot-hr"></div>
                                 <span class="pull-left"><b> Moneda: </b>{{propiedad.moneda}} </span>
                                 <span class="proerty-price pull-right"> $ {{propiedad.precio}}</span>
