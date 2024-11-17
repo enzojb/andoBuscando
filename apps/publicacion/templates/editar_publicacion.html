@@ -43,8 +43,8 @@
                                    
                         <div class="wizard-header">
                             <h3>
-                                <b>Edita</b> TUS REQUISITOS <br>
-                                <small>En tres simples pasos podras actualizarlos</small>
+                                <b>Edita</b> TU PUBLICACION <br>
+                                <small>En tres simples pasos podras actualizarla</small>
                             </h3>
                         </div>
 
@@ -62,7 +62,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Título <small>(requerido)</small></label>
-                                            <input name="titulo" type="text" class="form-control" placeholder="Departamento 2 ambientes...">
+                                            <input name="titulo" type="text" class="form-control" value="{{ publicacion.titulo }}" placeholder="Departamento 2 ambientes..." required>
                                         </div>
                                         <div class="form-group">
                                             <select name='moneda' id="basic"a class="form-control">
@@ -71,7 +71,7 @@
                                                 <option value="ARS">Pesos Argentinos(ARS)</option> 
                                             </select>
                                             <label>Precio máximo <small>(requerido)</small></label>
-                                            <input name="precio" type="text" class="form-control" placeholder="3330000">
+                                            <input name="precio" type="text" class="form-control" value="{{ publicacion.precio }}" placeholder="3330000">
                                         </div>
                                         <div class="form-group">
                                             <label for="id_tipo_operacion">Tipo operacion:</label>
@@ -89,13 +89,13 @@
                             <!--  End step 1 -->
 
                             <div class="tab-pane" id="step2">
-                                <h4 class="info-text"> Contanos un poco más sobre tu búsqueda </h4>
+                                <h4 class="info-text"> Detalles de tu búsqueda </h4>
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <div class="col-sm-12"> 
                                             <div class="form-group">
                                                 <label>Descripción :</label>
-                                                <textarea name="descripcion" class="form-control" ></textarea>
+                                                <textarea name="descripcion" class="form-control" >{{ publicacion.descripcion }}</textarea>
                                             </div> 
                                         </div> 
                                     </div>
@@ -141,9 +141,9 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="price-range">Ambientes:</label>
-                                                <input name="ambientes" type="text" class="span2" value="" data-slider-min="0" 
+                                                <input name="ambientes" type="text" class="span2" value="{{ publicacion.ambientes }}" data-slider-min="0" 
                                                         data-slider-max="20" data-slider-step="1" 
-                                                        data-slider-value="5" id="min-baths" ><br />
+                                                        data-slider-value="{{ publicacion.ambientes }}" id="min-baths" ><br />
                                                 <b class="pull-left color">1</b> 
                                                 <b class="pull-right color">20</b>
                                             </div>
@@ -173,7 +173,7 @@
 
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" /> <strong>Aceptar términos y condiciones.</strong>
+                                                    <input type="checkbox" name="terminos" required {% if publicacion.terminos %} checked {% endif %}/> <strong>Aceptar términos y condiciones.</strong>
                                                 </label>
                                             </div> 
 
@@ -188,8 +188,7 @@
                         <div class="wizard-footer">
                             <div class="pull-right">
                                 <input type='button' class='btn btn-next btn-primary' name='next' value='Siguiente' />
-                                <!-- <input type='button' class='btn btn-finish btn-primary ' name='finish' value='Finalizar' /> -->
-                                <input type='submit' class='btn btn-finish btn-primary ' name='finish' value='Finalizar' /> <!-- El botón tiene que ser tipo "submit" para enviar -->
+                                <input type='submit' class='btn btn-finish btn-primary ' name='finish' value='Confirmar cambios' />
                             </div>
 
                             <div class="pull-left">
