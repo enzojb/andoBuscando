@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm
-import os
+from django.contrib import messages
 from django.conf import settings
 from PIL import Image
 import io
@@ -28,6 +28,7 @@ class CrearPropiedadView(CreateView):
     success_url = reverse_lazy('propiedades') 
     def form_valid(self, form):
         # Guardar el objeto sin confirmar
+        messages.success(self.request, 'Se cargo la propiedad, ya puede visualizarlo.')
         propiedad = form.save(commit=False)
         imagen = self.request.FILES.get('foto')  # Cambia 'foto' según el nombre del campo
 
@@ -66,6 +67,10 @@ class PropieadadActualizarView(UpdateView):
     form_class = CrearPropiedadForm
     template_name = "editar_propiedad.html"
     success_url = reverse_lazy('propiedades')
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Actualizaste la informacion de tu propiedad correctamente.')
+        return super().form_valid(form)
     
 
 class ContactarAgenteView(LoginRequiredMixin,TemplateView):

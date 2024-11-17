@@ -5,6 +5,15 @@
 
 {% block content %}
 
+<div class="container">
+    {% if messages %}
+        <div class="alert alert-success fade-out">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 <!-- Page header -->
 <div class="page-head"> 
     <div class="container">
