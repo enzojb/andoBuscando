@@ -24,7 +24,11 @@
 
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                     <li data-thumb="assets/img/property-1/property1.jpg"> 
-                                        <img src="{% static 'assets/img/property-1/property1.jpg' %}" />
+                                        {% if propiedad.foto %}
+                                        <img src="{{ propiedad.foto.url }}">
+                                    {% else %}
+                                        <p>No hay imagen disponible</p>
+                                    {% endif %}</a>
                                     </li>
                                     <!-- <li data-thumb="assets/img/property-1/property2.jpg"> 
                                         <img src="{% static 'assets/img/property-1/property3.jpg' %}" />
@@ -85,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="similar-post-section padding-top-40"> 
+                <!--<div class="similar-post-section padding-top-40"> 
                     <div id="prop-smlr-slide_0"> 
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
@@ -132,7 +136,7 @@
                             </div>
                         </div> 
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-md-4 p0">
