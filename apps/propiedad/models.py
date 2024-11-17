@@ -2,7 +2,7 @@ from django.db import models
 
 class Propiedad(models.Model):
     localidad = models.ForeignKey('propiedad.Localidad', on_delete=models.CASCADE)
-    #agente = models.ForeignKey('usuario.Agente', on_delete=models.CASCADE)
+    agente = models.ForeignKey('usuario.Agente', on_delete=models.CASCADE)
     tipo_propiedad = models.ForeignKey('propiedad.TipoPropiedad', on_delete=models.CASCADE)
     tipo_operacion = models.ForeignKey('propiedad.TipoOperacion', on_delete=models.CASCADE, default='')
     titulo= models.CharField(max_length=50, default='sin titulo')
