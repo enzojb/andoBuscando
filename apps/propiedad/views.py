@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm
 import os
@@ -60,6 +60,13 @@ class PropiedadDetalleView(DetailView):
     template_name = "detalle_propiedad.html"
     context_object_name = 'propiedad'
     pk_url_kwarg = 'id'
+
+class PropieadadActualizarView(UpdateView):
+    model = Propiedad
+    form_class = CrearPropiedadForm
+    template_name = "editar_propiedad.html"
+    success_url = reverse_lazy('propiedades')
+    
 
 class ContactarAgenteView(LoginRequiredMixin,TemplateView):
     template_name = 'contactar_agente.html'
