@@ -103,7 +103,7 @@
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
-                                <a href="/propiedad/detalles_propiedad" >    
+                                <a href="{% url 'detalles_propiedad' propiedad.id %}" >    
                                 {% if propiedad.foto %}
                                     <img src="{{ propiedad.foto.url }}">
                                 {% else %}
