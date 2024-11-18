@@ -18,12 +18,18 @@
         </select>
     </div>
     <div class="form-group">                                     
-        <select name="moneda" class="form-control" >
-            <option selected disabled>Moneda</option>
-            <option value="USD">USD</option>
-            <option value="ARS">ARS</option>
-        </select>
+        <select name="tipo_propiedad" class="form-control" name="tipo_propiedad">
+            <option value="" selected disabled>Tipo propiedad</option>
+            <option value="1">Casa</option>
+            <option value="2">Departamento</option>
+            <option value="3">PH</option>
+            <option value="4">Quinta</option>
+            <option value="5">Garage</option>
+            <option value="6">Oficina comercial</option>
+            <option value="7">Local comercial</option>
+          </select>
     </div>
+    
     <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
 
     <div style="display: none;" class="search-toggle">
@@ -32,6 +38,11 @@
 
             <div class="form-group mar-r-20">
                 <label for="price">Rango de precios:</label>
+                <select name="moneda" class="form-control" >
+                    <option selected disabled>Moneda</option>
+                    <option value="USD">USD</option>
+                    <option value="ARS">ARS</option>
+                </select>
                 <input type="number" class="form-control" placeholder="Min($)" name="min_precio">
                 <input type="number" class="form-control" placeholder="Max($)" name="max_precio"><br />
             </div>

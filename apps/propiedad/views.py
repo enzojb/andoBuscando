@@ -23,6 +23,7 @@ class PropiedadView(ListView):
         queryset = Propiedad.objects.all()  # Comienza con todas las propiedades
 
         # Obtener los parámetros de la URL (GET)
+        tipo_propiedad = self.request.GET.get('tipo_propiedad')
         localidad = self.request.GET.get('localidad')
         tipo_operacion = self.request.GET.get('tipo_operacion')
         moneda = self.request.GET.get('moneda')
@@ -32,6 +33,8 @@ class PropiedadView(ListView):
         min_ambientes = self.request.GET.get('ambientes')
 
         # Filtrar según los parámetros disponibles
+        if tipo_propiedad:
+            queryset = queryset.filter(tipo_propiedad=tipo_propiedad)
         if localidad:
             queryset = queryset.filter(localidad=localidad)
         if tipo_operacion:
