@@ -10,7 +10,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.shortcuts import Http404, get_object_or_404
 
-class PublicacionView(TemplateView):
+# Vista para listar publicaciones hechas por cualquier usuario
+class PublicacionListView(TemplateView):
     template_name = "lista_publicaciones.html"
 
     def get_context_data(self, **kwargs: Any):
@@ -18,16 +19,27 @@ class PublicacionView(TemplateView):
         context["publicaciones"] = Publicacion.objects.all()
         return context
 
+# Vista de acciones usuario
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "acciones_usuario.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['publicaciones'] = Publicacion.objects.filter(cliente=self.request.user.cliente)
+        return context
+
+# Vista para cargar busquedas
 class PublicacionCargaView(CreateView):
     model = Publicacion
     form_class = CargarPublicacionForm
     template_name = 'carga_publicacion.html'
-    success_url = reverse_lazy('busquedas')  
+    success_url = reverse_lazy('acciones_usuario')  
 
     def form_valid(self, form):
-        form.instance.cliente = self.request.user.cliente  # El cliente está relacionado con el usuario logueado
+        form.instance.cliente = self.request.user.cliente
         return super().form_valid(form)
     
+# Vista para el "chat de contacto"    
 class ContactarUsuarioView(LoginRequiredMixin,TemplateView):
     template_name = 'contactar_usuario.html'
     login_url = "/login/"
@@ -37,22 +49,12 @@ class ContactarUsuarioView(LoginRequiredMixin,TemplateView):
     def get(self,request):
         return self.render_to_response({})
     
-class PublicacionLecturaView(ListView):
-    model = Publicacion
-    template_name = 'acciones_usuario.html'
-    context_object_name = 'publicaciones'
-
-    def get_queryset(self):
-        return Publicacion.objects.filter(cliente=self.request.user.cliente)
-
-class PublicacionView(TemplateView):
-    template_name = 'editar_publicacion.html'
-
+# Vista para editar publicaciones
 class PublicacionEdicionView(UpdateView):
     model = Publicacion
     form_class = EditarPublicacionForm
     template_name = 'editar_publicacion.html'
-    success_url = reverse_lazy('publicacion')
+    success_url = reverse_lazy('acciones_usuario')
 
     def get_object(self):
         try:
@@ -70,11 +72,12 @@ class PublicacionEdicionView(UpdateView):
         form.save()
         messages.success(self.request, 'Tu publicación se editó exitosamente.')
         return super().form_valid(form)
-    
+
+# Vista para eliminar publicaciones  
 class PublicacionEliminacionView(DeleteView):
     model = Publicacion
-    template_name = 'eliminar_publicación.html'
-    success_url = reverse_lazy ('publicacion')
+    template_name='eliminar_publicacion.html'
+    success_url = reverse_lazy ('acciones_usuario')
 
     def get_object(self):
         publicacion = get_object_or_404(Publicacion, pk=self.kwargs['pk'], cliente=self.request.user.cliente)
