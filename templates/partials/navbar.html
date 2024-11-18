@@ -96,6 +96,7 @@
                                         </ul>
                                         <h5>Mi cuenta</h5>
                                         <ul>
+                                            <li><a href="{% url 'acciones_usuario' %}">Acciones</a></li>
                                             <li><a href="{% url 'perfil' %}">Perfil</a></li>
                                             <li><a href="{% url 'cambiar_contrasenia' %}">Cambiar contraseña</a></li>
                                             <li><form action="{% url 'logout' %}" method="post">

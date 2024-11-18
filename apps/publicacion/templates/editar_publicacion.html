@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}ANDO BUSCANDO | Editar Propiedad{% endblock %}
+{% block title %}ANDO BUSCANDO | Editar Publicacion{% endblock %}
 
 {% block content %}
 
@@ -22,7 +22,7 @@
 
                 <div class="wizard-card ct-wizard-orange" id="wizardProperty">
                     <!-- <form action="" method=""> -->
-                    <form method="post" action="{% url 'editar_perfil' %}" enctype="multipart/form-data">
+                    <form method="post" action="{% url 'editar_publicacion' pk=publicacion.pk %}" enctype="multipart/form-data">
                         {% csrf_token %} 
                         <!-- Errores del formulario -->
                         {% if form.errors %}
@@ -35,7 +35,7 @@
                                                     {{ error }}
                                                 {% endfor %}
                                             </li>
-                                        {% endif %}
+                                        {% endfor %}
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -80,7 +80,7 @@
                                         
                                             <option value="2">Compra</option>
                                         
-                                            <option value="3">Venta</option>
+                                            <!-- <option value="3">Venta</option> -->
                                             </select>
                                         </div>
                                     </div>

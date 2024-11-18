@@ -1,25 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}ANDO BUSCANDO | Búsquedas{% endblock %}
+{% block title %}ANDO BUSCANDO | Acciones Usuario{% endblock %}
 
 {% block content %}
-
-<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
-    <div class="container">   
-        <div class="row">
-            <div class="blog-lst col-md-12">
-                <section class="post">
-                    <div class="text-center padding-b-50">
-                        <h2 class="wow fadeInLeft animated">Podras realizar las siguientes acciones</h2>
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h2 class="wow fadeInLeft animated">Publicaciones</h2>
                         <div class="title-line wow fadeInRight animated"></div>
                     </div>
-                    <br><br>
+                </div>
+            </div>
+        </div>
+        <div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+                <div class="clearfix" > 
+                    <div class="wizard-container">         
                     {% if publicaciones %}
                         <ul>
                             {% for publicacion in publicaciones %}
                                 <li>
-                                    <a href="{% url 'editar_publicacion' pk=publicacion.pk %}">Editar</a>
+                                    <h3>{{ publicacion.titulo }}</h3>
+                                    <p>{{ publicacion.descripcion }}</p>
+                                    <a href="{% url 'editar_publicacion' pk=publicacion.pk %}" class="btn btn-default">Editar</a>
                                     <a href="{% url 'eliminar_publicacion' pk=publicacion.pk %}" class="btn btn-danger">Eliminar</a>
                                 </li>
                             {% endfor %}
@@ -27,41 +32,11 @@
                     {% else %}
                         <p>No tienes publicaciones.</p>
                     {% endif %}
-
-                    <a href="{% url 'crear_publicacion' %}" class="btn btn-primary">Crear nueva publicación</a>
-
-
-                    <p class="intro">En este espacio podrás cargar la información referida a tu búsqueda.</p>
-                        <a href="single.html" class="btn btn-default btn-border">Crear búsqueda</a>
-                </section>   
-
-                <section class="post">
-                    <div class="text-center padding-b-50">
-                        <div class="title-line wow fadeInRight animated"></div>
-                    </div>
-                    <p class="intro">Si su publicación requiere alguna modificación, aquí es donde podrá hacerla.</p>
-                        <a href="single.html" class="btn btn-default btn-border">Editar búsqueda</a>
-                </section>  
-
-                <section class="post">
-                    <div class="text-center padding-b-50">
-                        <div  class="title-line wow fadeInRight animated"></div>
-                    </div>
-                    <p class="intro">En caso de necesitar borrar una publicación deberá ingresar a este espacio.</p>
-                        <a href="single.html" class="btn btn-default btn-border">Eliminar búsqueda</a>
-                </section>
-
-                <section class="post">
-                    <div class="text-center padding-b-50">
-                        <div  class="title-line wow fadeInRight animated"></div>
-                    </div>
-                    <p class="intro">Si preferís podes ingresar a ver las propiedades publicadas hasta el momento.</p>
-                        <a href="single.html" class="btn btn-default btn-border">Listado de propiedades</a>
-                </section>
-
-            </div>  
+                    <br>
+                    <a href="{% url 'cargar_publicacion' %}" class="btn btn-primary">Crear publicación</a>
+                    </div>  
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 {% endblock %}
