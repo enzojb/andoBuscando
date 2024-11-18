@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView, ListView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm, EditarPropiedadForm
 from django.contrib import messages
@@ -31,7 +31,7 @@ class CrearPropiedadView(CreateView):
         form.instance.agente = self.request.user.agente
         messages.success(self.request, 'Se cargo la propiedad, ya puede visualizarlo.')
         propiedad = form.save(commit=False)
-        imagen = self.request.FILES.get('foto')  # Cambia 'foto' según el nombre del campo
+        imagen = self.request.FILES.get('foto') 
 
         # Procesar la imagen con Pillow si existe
         if imagen:
@@ -67,7 +67,7 @@ class PropieadadActualizarView(LoginRequiredMixin,UpdateView):
     model = Propiedad
     form_class = EditarPropiedadForm
     template_name = "editar_propiedad.html"
-    success_url = reverse_lazy('propiedades')
+    success_url = reverse_lazy('mis_propiedades')
     def form_valid(self, form):
         form.save()
         messages.success(self.request, 'Actualizaste la informacion de tu propiedad correctamente.')
@@ -79,12 +79,12 @@ class PropieadadActualizarView(LoginRequiredMixin,UpdateView):
         # Verifica si el usuario tiene permisos para editar la propiedad
         if not hasattr(request.user, 'agente'):  # Verifica si es un agente
             messages.error(request, "Solo los agentes pueden editar propiedades.")
-            return redirect('propiedades')  # Redirige a la lista de propiedades si no es un agente
+            return redirect('/')  # Redirige a la lista de propiedades si no es un agente
 
         # Verifica si el agente que está editando la propiedad es el mismo que la creo
         if propiedad.agente != request.user.agente:
             messages.error(request, "No tienes permiso para editar esta propiedad.")
-            return redirect('propiedades')  # Redirige a la lista de propiedades si no tiene permiso
+            return redirect('/')  # Redirige a la lista de propiedades si no tiene permiso
 
         # Si el usuario tiene permisos, continúa con el flujo normal
         return super().dispatch(request, *args, **kwargs)
@@ -92,28 +92,28 @@ class PropieadadActualizarView(LoginRequiredMixin,UpdateView):
 class EliminarPropiedadView(DeleteView):
     model = Propiedad
     template_name = "eliminar_propiedad.html"
-    success_url = reverse_lazy('propiedades')
+    success_url = reverse_lazy('mis_propiedades')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["propiedades"] = Propiedad.objects.all()  # Opcional
+        context["propiedades"] = Propiedad.objects.all()
         return context
 
 
     def dispatch(self, request, *args, **kwargs):
         propiedad = self.get_object()
 
-        # Verifica si el usuario tiene permisos para editar la propiedad
-        if not hasattr(request.user, 'agente'):  # Verifica si es un agente
-            messages.error(request, "Solo los agentes pueden eliminar propiedades.")
-            return redirect('propiedades')  # Redirige a la lista de propiedades si no es un agente
 
-        # Verifica si el agente que está editando la propiedad es el mismo que la creo
+        if not hasattr(request.user, 'agente'):  
+            messages.error(request, "Solo los agentes pueden eliminar propiedades.")
+            return redirect('/')  
+
+
         if propiedad.agente != request.user.agente:
             messages.error(request, "No tienes permiso para eliminar esta propiedad.")
-            return redirect('propiedades')  # Redirige a la lista de propiedades si no tiene permiso
+            return redirect('/') 
 
-        # Si el usuario tiene permisos, continúa con el flujo normal
+ 
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -129,3 +129,19 @@ class ContactarAgenteView(LoginRequiredMixin,TemplateView):
 
     def get(self,request):
         return self.render_to_response({})
+    
+class MisPropiedadesView(ListView, LoginRequiredMixin):
+    model = Propiedad
+    template_name = "mis_propiedades.html"
+    context_object_name = 'propiedades'
+    def get_queryset(self):
+        return Propiedad.objects.filter(agente=self.request.user.agente)
+    
+    def dispatch(self, request, *args, **kwargs):
+
+        if not hasattr(request.user, 'agente'):
+            messages.error(request, "No tienes permiso para acceder a mis propiedades.")
+            return redirect('/')  
+        
+
+        return super().dispatch(request, *args, **kwargs)
