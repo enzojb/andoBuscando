@@ -9,5 +9,5 @@ urlpatterns=[
     path("contactar_agente", ContactarAgenteView.as_view() , name="contactar_agente"),
     path("editar_propiedad/<int:pk>",PropieadadActualizarView.as_view(), name="editar_propiedad" ),
     path("eliminar_propiedad/<int:pk>",EliminarPropiedadView.as_view(), name="eliminar_propiedad" ),
-    path("mis_propiedades/",MisPropiedadesView.as_view(), name="mis_propiedades" )
+    path("mis_propiedades/",MisPropiedadesView.as_view(), name="mis_propiedades" ),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

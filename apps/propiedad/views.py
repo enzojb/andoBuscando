@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView, ListView, FormView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm, EditarPropiedadForm
 from django.contrib import messages
@@ -12,13 +12,59 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class PropiedadView(TemplateView):
-    template_name = "propiedades.html"
+class PropiedadView(ListView):
+    model = Propiedad
+    template_name = 'propiedades.html'
+    context_object_name = 'propiedades'
+    paginate_by = 8  # Paginación de 10 resultados por página
 
-    def get_context_data(self, **kwargs: Any):
-        context = super().get_context_data(**kwargs)
-        context["propiedades"] = Propiedad.objects.all()
-        return context
+    def get_queryset(self):
+        # Obtener las propiedades filtradas
+        queryset = Propiedad.objects.all()  # Comienza con todas las propiedades
+
+        # Obtener los parámetros de la URL (GET)
+        localidad = self.request.GET.get('localidad')
+        tipo_operacion = self.request.GET.get('tipo_operacion')
+        moneda = self.request.GET.get('moneda')
+        min_precio = self.request.GET.get('min_precio')
+        max_precio = self.request.GET.get('max_precio')
+        min_metros_cuadrados = self.request.GET.get('metros_cuadrados')
+        min_ambientes = self.request.GET.get('ambientes')
+
+        # Filtrar según los parámetros disponibles
+        if localidad:
+            queryset = queryset.filter(localidad=localidad)
+        if tipo_operacion:
+            queryset = queryset.filter(tipo_operacion=tipo_operacion)
+        if moneda:
+            queryset = queryset.filter(moneda__icontains=moneda)
+        if min_precio:
+            queryset = queryset.filter(precio__gte=min_precio)
+        if max_precio:
+            queryset = queryset.filter(precio__lte=max_precio)
+        if min_metros_cuadrados:
+            min_metros_cuadrados = min_metros_cuadrados.strip('[]').split(',')
+            if len(min_metros_cuadrados) == 2:
+                min_metros = int(min_metros_cuadrados[0])
+                max_metros = int(min_metros_cuadrados[1])
+                queryset = queryset.filter(metros_cuadrados__gte=min_metros, metros_cuadrados__lte=max_metros)
+        if min_ambientes:
+            min_ambientes = min_ambientes.strip('[]').split(',')
+            if len(min_ambientes) == 2:
+                min_amb = int(min_ambientes[0])
+                max_amb = int(min_ambientes[1])
+                queryset = queryset.filter(ambientes__gte=min_amb, ambientes__lte=max_amb)
+
+            # Ordenar según los parámetros 'orderby' y 'order' si existen
+        order_by = self.request.GET.get('orderby', 'fecha_creacion')  # por defecto por fecha de creación
+        order = self.request.GET.get('order', 'ASC')  # por defecto en orden ascendente
+
+        if order == 'ASC':
+            queryset = queryset.order_by(order_by)
+        else:
+            queryset = queryset.order_by(f'-{order_by}')
+
+        return queryset
 
 
 
@@ -145,3 +191,5 @@ class MisPropiedadesView(ListView, LoginRequiredMixin):
         
 
         return super().dispatch(request, *args, **kwargs)
+    
+    

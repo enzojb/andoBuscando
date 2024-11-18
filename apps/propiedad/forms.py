@@ -84,3 +84,17 @@ class EditarPropiedadForm(forms.ModelForm):
         if not metros_cuadrados:
             return self.instance.metros_cuadrados
         return metros_cuadrados
+
+
+class BuscarPropiedadForm(forms.ModelForm):
+    min_precio = forms.DecimalField(required=False, label="Precio mínimo")
+    max_precio = forms.DecimalField(required=False, label="Precio máximo")
+    min_metros_cuadrados = forms.IntegerField(required=False, label="Mínimo m²")
+    max_metros_cuadrados = forms.IntegerField(required=False, label="Máximo m²")
+    min_ambientes = forms.IntegerField(required=False, label="Mínimo ambientes")
+    max_ambientes = forms.IntegerField(required=False, label="Máximo ambientes")
+
+    class Meta:
+        model = Propiedad
+        fields = ['localidad', 'tipo_operacion', 'moneda']
+        

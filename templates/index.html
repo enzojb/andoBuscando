@@ -30,66 +30,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
                 <h2>Buscar propiedades ahora es más fácil</h2>
                 <div class="search-form wow pulse" data-wow-delay="0.8s">
-
-                    <form action="" class=" form-inline">
-                        <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
-                        <div class="form-group">                                   
-                            <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Localidad">
-                                <option>Palermo</option>
-                                <option>Belgrano</option>
-                                <option>Caballito</option>
-                                <option>Balvanera</option>
-                                <option>Nunez</option>
-                            </select>
-                        </div>
-                        <div class="form-group">                                     
-                            <select id="basic" class="selectpicker show-tick form-control">
-                                <option>Operacion</option>
-                                <option>Alquilar </option>
-                                <option>Comprar</option> 
-
-                            </select>
-                        </div>
-                        <div class="form-group">                                     
-                            <select id="basic" class="selectpicker show-tick form-control">
-                                <option> Moneda </option>
-                                <option>Dolar Estadounidense (USD)</option>
-                                <option>Pesos Argentinos(ARS)</option> 
-
-                            </select>
-                        </div>
-                        <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-
-                        <div style="display: none;" class="search-toggle">
-
-                            <div class="search-row">   
-
-                                <div class="form-group mar-r-20">
-                                    <label for="price">Rango de precios:</label>
-                                    <input type="number" class="form-control" placeholder="Min($)">
-                                    <input type="number" class="form-control" placeholder="Max($)"><br />
-                                </div>
-                                <!-- End of  -->  
-
-                                <div class="form-group mar-r-20">
-                                    <label for="property-geo">Metros cuadrados (m2):</label>
-                                    <input type="text" class="span2" value="" data-slider-min="20" 
-                                           data-slider-max="1200" data-slider-step="1" 
-                                           data-slider-value="[20,450]" id="property-geo" ><br />
-                                    <b class="pull-left color">20m2</b> 
-                                    <b class="pull-right color">1200m2</b>
-                                </div>
-                                <div class="form-group mar-r-20">
-                                    <label for="price-range">Ambientes:</label>
-                                    <input type="text" class="span2" value="" data-slider-min="0" 
-                                           data-slider-max="20" data-slider-step="1" 
-                                           data-slider-value="[0,4]" id="min-baths" ><br />
-                                    <b class="pull-left color">1</b> 
-                                    <b class="pull-right color">20</b>
-                                </div>
-                            </div>
-                        </div>                     
-                    </form>
+                    {% include 'formulario_busqueda_propiedades.html' %}
                 </div>
             </div>
         </div>
@@ -179,7 +120,7 @@
                                 <h4><strong>Fernando Gago</strong></h4>
                             </div>
                             <div class="client-face wow fadeInRight" data-wow-delay=".9s"> 
-                                <img src="{% static 'assets/img/client-face1.png' %}" alt="">
+                                <img src="{% static 'assets/img/gago.png' %}" alt="">
                             </div>
                         </div>
                         <div class="item">
@@ -188,7 +129,7 @@
                                 <h4><strong>Emiliano Martinez</strong></h4>
                             </div>
                             <div class="client-face">
-                                <img src="{% static 'assets/img/client-face2.png' %}" alt="">
+                                <img src="{% static 'assets/img/dibu.avif' %}" alt="">
                             </div>
                         </div>
                         <div class="item">
@@ -197,16 +138,16 @@
                                 <h4><strong>Akira Toriyama</strong></h4>
                             </div>
                             <div class="client-face">
-                                <img src="{% static 'assets/img/client-face1.png' %}" alt="">
+                                <img src="{% static 'assets/img/akira-toriyama.png' %}" alt="">
                             </div>
                         </div>
                         <div class="item">
                             <div class="client-text">                                
                                 <p>Ni idea loco, tremenda página.</p>
-                                <h4><strong>Charly García</strong></h4>
+                                <h4><strong>Luis Alberto Spinetta</strong></h4>
                             </div>
                             <div class="client-face">
-                                <img src="{% static 'assets/img/client-face2.png' %}" alt="">
+                                <img src="{% static 'assets/img/spinetta.png' %}" alt="">
                             </div>
                         </div>
                     </div>
