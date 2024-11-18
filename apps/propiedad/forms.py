@@ -6,6 +6,12 @@ class CrearPropiedadForm(forms.ModelForm):
     class Meta:
         model = Propiedad
         fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','localidad','direccion','tipo_propiedad','ambientes','metros_cuadrados']
+
+
+class EditarPropiedadForm(forms.ModelForm):
+    class Meta:
+        model = Propiedad
+        fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','localidad','direccion','tipo_propiedad','ambientes','metros_cuadrados']
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Hacer que los campos no sean obligatorios
