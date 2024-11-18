@@ -1,7 +1,7 @@
 from typing import Any
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
+from django.views.generic import TemplateView, CreateView, DetailView, UpdateView, DeleteView
 from apps.propiedad.models import Propiedad
 from apps.propiedad.forms import CrearPropiedadForm, EditarPropiedadForm
 from django.contrib import messages
@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class PropiedadView(TemplateView):
-    template_name = "lista_propiedades.html"
+    template_name = "propiedades.html"
 
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
@@ -37,7 +37,7 @@ class CrearPropiedadView(CreateView):
         if imagen:
             with Image.open(imagen) as img:
                 img = img.convert('RGB')  # Asegúrate de que la imagen esté en RGB
-                img.thumbnail((800, 800))  # Redimensionar la imagen
+                img.thumbnail((1500, 800))  # Redimensionar la imagen
 
                 # Guardar la imagen en memoria
                 buffer = io.BytesIO()
@@ -61,7 +61,7 @@ class PropiedadDetalleView(DetailView):
     model = Propiedad
     template_name = "detalle_propiedad.html"
     context_object_name = 'propiedad'
-    pk_url_kwarg = 'id'
+    
 
 class PropieadadActualizarView(LoginRequiredMixin,UpdateView):
     model = Propiedad
@@ -81,7 +81,7 @@ class PropieadadActualizarView(LoginRequiredMixin,UpdateView):
             messages.error(request, "Solo los agentes pueden editar propiedades.")
             return redirect('propiedades')  # Redirige a la lista de propiedades si no es un agente
 
-        # Verifica si el agente que está editando la propiedad es el mismo que la creó
+        # Verifica si el agente que está editando la propiedad es el mismo que la creo
         if propiedad.agente != request.user.agente:
             messages.error(request, "No tienes permiso para editar esta propiedad.")
             return redirect('propiedades')  # Redirige a la lista de propiedades si no tiene permiso
@@ -89,6 +89,37 @@ class PropieadadActualizarView(LoginRequiredMixin,UpdateView):
         # Si el usuario tiene permisos, continúa con el flujo normal
         return super().dispatch(request, *args, **kwargs)
             
+class EliminarPropiedadView(DeleteView):
+    model = Propiedad
+    template_name = "eliminar_propiedad.html"
+    success_url = reverse_lazy('propiedades')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["propiedades"] = Propiedad.objects.all()  # Opcional
+        return context
+
+
+    def dispatch(self, request, *args, **kwargs):
+        propiedad = self.get_object()
+
+        # Verifica si el usuario tiene permisos para editar la propiedad
+        if not hasattr(request.user, 'agente'):  # Verifica si es un agente
+            messages.error(request, "Solo los agentes pueden eliminar propiedades.")
+            return redirect('propiedades')  # Redirige a la lista de propiedades si no es un agente
+
+        # Verifica si el agente que está editando la propiedad es el mismo que la creo
+        if propiedad.agente != request.user.agente:
+            messages.error(request, "No tienes permiso para eliminar esta propiedad.")
+            return redirect('propiedades')  # Redirige a la lista de propiedades si no tiene permiso
+
+        # Si el usuario tiene permisos, continúa con el flujo normal
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "La propiedad ha sido eliminada exitosamente.")
+        return super().delete(request, *args, **kwargs)
+
 
 class ContactarAgenteView(LoginRequiredMixin,TemplateView):
     template_name = 'contactar_agente.html'

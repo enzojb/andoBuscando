@@ -25,7 +25,7 @@
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                     <li data-thumb="assets/img/property-1/property1.jpg"> 
                                         {% if propiedad.foto %}
-                                        <img src="{{ propiedad.foto.url }}">
+                                        <img src="{{ propiedad.foto.url }}" width="100%">
                                     {% else %}
                                         <p>No hay imagen disponible</p>
                                     {% endif %}</a>
@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
-                                            <a href="">Nathan James</a>
+                                            <a href="">{{propiedad.agente.first_name}} {{propiedad.agente.last_name}}</a>
                                             <span>Agente Inmobiliario</span>        
                                         </h3>
                                         <div class="dealer-social-media">
@@ -207,17 +207,19 @@
                                 </div>
 
                                 <div class="clear">
-                                    <ul class="dealer-contacts">                                       
+                                    <!--<ul class="dealer-contacts">                                       
                                         <li><i class="pe-7s-map-marker strong"> </i> Localidad: Palermo</li>
-                                    </ul>
-                                    <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                    </ul> -->
+                                    <p>Nro matricula: {{ propiedad.agente.matricula}}</p>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <a href="{% url 'editar_propiedad' propiedad.pk %}"><button type="submit" class="btn btn-default">Contactar</button></a>
+                        <a href="{% url 'contactar_agente' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
+                        <a href="{% url 'editar_propiedad' propiedad.pk %}"><button type="submit" class="btn btn-default">Editar</button></a>
+                        <a href="{% url 'eliminar_propiedad' propiedad.pk %}"><button type="submit" class="btn btn-default">Eliminar</button></a>
                     </div>
 
                 </aside>
