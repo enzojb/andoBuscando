@@ -24,7 +24,11 @@
 
                                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                                     <li data-thumb="assets/img/property-1/property1.jpg"> 
-                                        <img src="{% static 'assets/img/property-1/property1.jpg' %}" />
+                                        {% if propiedad.foto %}
+                                        <img src="{{ propiedad.foto.url }}" width="100%">
+                                    {% else %}
+                                        <p>No hay imagen disponible</p>
+                                    {% endif %}</a>
                                     </li>
                                     <!-- <li data-thumb="assets/img/property-1/property2.jpg"> 
                                         <img src="{% static 'assets/img/property-1/property3.jpg' %}" />
@@ -44,7 +48,7 @@
                         <div class="section">
                             <h4 class="s-property-title">Descripción</h4>
                             <div class="s-property-content">
-                                <p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
+                                <p>{{propiedad.descripcion}}</p>
                             </div>
                         </div>
                         <!-- End description area  -->
@@ -56,27 +60,31 @@
                             <ul class="additional-details-list clearfix">
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Localidad</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Palermo</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.localidad}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Dirección</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Beruti 3325</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.direccion}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Tipo propiedad</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Casa</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.tipo_propiedad}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Ambientes</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">3</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.ambientes}}</span>
                                 </li>
 
                                 <li>
                                     <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Metros cuadrados</span>
-                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">3500m2</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.metros_cuadrados}}m2</span>
+                                </li>
+                                <li>
+                                    <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Fecha de publicación</span>
+                                    <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">{{propiedad.fecha_creacion}}</span>
                                 </li>
 
                             </ul>
@@ -85,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="similar-post-section padding-top-40"> 
+                <!--<div class="similar-post-section padding-top-40"> 
                     <div id="prop-smlr-slide_0"> 
                         <div class="box-two proerty-item">
                             <div class="item-thumb">
@@ -132,7 +140,7 @@
                             </div>
                         </div> 
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-md-4 p0">
@@ -141,9 +149,9 @@
                         <div class="dealer-content">
                             <div class="inner-wrapper">
                                 <div class="single-property-header">                                          
-                                    <h1 class="property-title">Villa in Coral Gables</h1>
+                                    <h1 class="property-title">{{propiedad.titulo}}</h1>
                                     <span class="property-price">ARS</span>
-                                    <span class="property-price">$825,000</span>
+                                    <span class="property-price">${{propiedad.precio}}</span>
                                 </div>
 
                                 <div class="property-meta entry-meta clearfix ">   
@@ -154,7 +162,7 @@
                                         </span>
                                         <span class="property-info-entry">
                                             <span class="property-info-label">Estado</span>
-                                            <span class="property-info-value">En Venta</span>
+                                            <span class="property-info-value">{{propiedad.tipo_operacion}}</span>
                                         </span>
                                     </div>
 
@@ -164,7 +172,7 @@
                                         </span>
                                         <span class="property-info-entry">
                                             <span class="property-info-label">Tamaño</span>
-                                            <span class="property-info-value">3500<b class="property-info-unit">m2</b></span>
+                                            <span class="property-info-value">{{propiedad.metros_cuadrados}}<b class="property-info-unit">m2</b></span>
                                         </span>
                                     </div>
                                 </div>
@@ -179,7 +187,7 @@
                                     </div>
                                     <div class="col-xs-8 col-sm-8 ">
                                         <h3 class="dealer-name">
-                                            <a href="">Nathan James</a>
+                                            <a href="">{{propiedad.agente.first_name}} {{propiedad.agente.last_name}}</a>
                                             <span>Agente Inmobiliario</span>        
                                         </h3>
                                         <div class="dealer-social-media">
@@ -203,17 +211,17 @@
                                 </div>
 
                                 <div class="clear">
-                                    <ul class="dealer-contacts">                                       
+                                    <!--<ul class="dealer-contacts">                                       
                                         <li><i class="pe-7s-map-marker strong"> </i> Localidad: Palermo</li>
-                                    </ul>
-                                    <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                    </ul> -->
+                                    <p>Nro matricula: {{ propiedad.agente.matricula}}</p>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-default">Contactar</button>
+                        <a href="{% url 'contactar_agente' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                     </div>
 
                 </aside>

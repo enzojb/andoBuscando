@@ -1,12 +1,12 @@
-from apps.usuario.models import Cliente
-from .forms import ClienteForm, EditarPerfilForm, EditarContraseniaForm
+from apps.usuario.models import Usuario
+from .forms import UsuarioForm, EditarPerfilForm, EditarContraseniaForm
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, UpdateView
-from django.shortcuts import redirect
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from .forms import UsuarioForm, EditarPerfilForm, EditarSoyAgenteForm, EditarContraseniaForm
 
 class RegistroView(TemplateView):
     template_name = 'registration/register.html'
@@ -16,9 +16,9 @@ class RegistroView(TemplateView):
             return redirect('index')
         return super().get(request, *args, **kwargs)
 
-class RegistroClienteView(CreateView):
-    model = Cliente
-    form_class = ClienteForm 
+class RegistroUsuarioView(CreateView):
+    model = Usuario
+    form_class = UsuarioForm 
     template_name = 'registration/register.html'
     success_url = reverse_lazy('login') 
 
@@ -35,7 +35,7 @@ class PerfilView(LoginRequiredMixin, TemplateView):
     template_name = 'profile.html'
     
 class EditarPerfilView(LoginRequiredMixin, UpdateView):
-    model = Cliente
+    model = Usuario
     form_class = EditarPerfilForm 
     template_name = 'profile.html'
     success_url = reverse_lazy('perfil')
@@ -52,12 +52,34 @@ class EditarPerfilView(LoginRequiredMixin, UpdateView):
         form.save()
         messages.success(self.request, 'Tu perfil ha sido actualizado exitosamente.')
         return super().form_valid(form)
+
+class SoyAgenteView(LoginRequiredMixin, TemplateView):
+    template_name = 'soy_agente.html'
+
+class EditarSoyAgenteView(LoginRequiredMixin, UpdateView):
+    model = Usuario
+    form_class = EditarSoyAgenteForm 
+    template_name = 'soy_agente.html'
+    success_url = reverse_lazy('soy_agente')
+
+    def get_object(self):
+        return self.request.user
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user 
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Tu perfil ha sido actualizado exitosamente.')
+        return super().form_valid(form)
+
 class CambiarContraseniaView(LoginRequiredMixin, TemplateView):
     template_name = 'change_password.html'
     
 class EditarContraseniaView(LoginRequiredMixin, UpdateView):
-    model = Cliente
+    model = Usuario
     form_class = EditarContraseniaForm
     template_name = 'change_password.html'
     success_url = reverse_lazy('cambiar_contrasenia')
@@ -66,27 +88,30 @@ class EditarContraseniaView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
     def form_valid(self, form):
-        self.request.user.set_password(form.cleaned_data['password_current'])
-        self.request.user.save()
-        update_session_auth_hash(self.request, self.request.user)
+        user = self.request.user
+        user.set_password(form.cleaned_data['password'])
+        user.save()
+        update_session_auth_hash(self.request, user)
         messages.success(self.request, 'Tu contraseña ha sido cambiada exitosamente.')
         return super().form_valid(form)
 
-class EliminarCuentaView(LoginRequiredMixin, TemplateView):
+class EliminarCuentaView(LoginRequiredMixin, DeleteView):
     template_name = 'delete_account.html'
+    success_url = reverse_lazy('index')
 
     def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-
-class ConfirmarEliminarCuentaView(LoginRequiredMixin, TemplateView):
-    template_name = 'delete_account.html'
+        return self.render_to_response({})
 
     def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+
         user = request.user
 
         user.delete()
 
+        messages.success(request, "Tu cuenta ha sido eliminada exitosamente.")
+
         logout(request)
 
-        messages.success(request, 'Tu cuenta ha sido eliminada exitosamente.')
-        return redirect(reverse_lazy('index'))
+        return redirect(self.success_url)

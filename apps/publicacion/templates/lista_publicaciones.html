@@ -89,28 +89,30 @@
 
             <div class="col-md-12 clear "> 
                 <div id="list-type" class="proerty-th">
+                    {% for publicacion in publicaciones%}
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
 
                             <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 1 </a></h5>
+                                <h5><a href="property-1.html"> {{publicacion.titulo}} </a></h5>
                                 <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
+                                <span class="pull-left"><b> Moneda:</b> {{publicacion.moneda}} </span>
+                                <span class="proerty-price pull-right"> $ {{publicacion.precio}} </span>
+                                <p style="display: none;">{{publicacion.descripcion}}</p>
                                 <div class="property-icon">
-                                    <label> Loc: Palermo |</label>
-                                    <label> Amb: 5 |</label>
-                                    <label> Fecha public: 02/05/2024</label>
+                                    <label> Loc: {{publicacion.localidad}} |</label>
+                                    <label> Amb: {{publicacion.ambientes}} |</label>
+                                    <label> Fecha public: {{publicacion.fecha_creacion}}</label>
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
                     </div> 
-
+                    {% endfor %}
+<!--
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
 
@@ -127,7 +129,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +151,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +173,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +195,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +217,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +239,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +261,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -281,7 +283,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +305,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -325,7 +327,7 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
@@ -347,11 +349,11 @@
                                 </div>
                                 <br>
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-default">Contactar</button>
+                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div> q-->
                 </div>
             </div>
 

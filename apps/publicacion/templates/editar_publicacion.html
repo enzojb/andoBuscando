@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ANDO BUSCANDO | Editar Publicacion{% endblock %}
+
+{% block content %}
+
+<div class="page-head"> 
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">Edita una búsqueda</h1>               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End page header -->
+<div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
+    <div class="container">
+        <div class="clearfix" > 
+            <div class="wizard-container"> 
+
+                <div class="wizard-card ct-wizard-orange" id="wizardProperty">
+                    <!-- <form action="" method=""> -->
+                    <form method="post" action="{% url 'editar_publicacion' pk=publicacion.pk %}" enctype="multipart/form-data">
+                        {% csrf_token %} 
+                        <!-- Errores del formulario -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li><strong>{{ field.label }}:</strong>
+                                                {% for error in field.errors %}
+                                                    {{ error }}
+                                                {% endfor %}
+                                            </li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                                   
+                        <div class="wizard-header">
+                            <h3>
+                                <b>Edita</b> TU PUBLICACION <br>
+                                <small>En tres simples pasos podras actualizarla</small>
+                            </h3>
+                        </div>
+
+                        <ul>
+                            <li><a href="#step1" data-toggle="tab">Paso 1 </a></li>
+                            <li><a href="#step2" data-toggle="tab">Paso 2 </a></li>
+                            <li><a href="#step3" data-toggle="tab">Finalizar </a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane" id="step1">
+                                <div class="row p-b-15  ">
+                                    <h4 class="info-text"> Empecemos con la informacion básica</h4>
+
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Título <small>(requerido)</small></label>
+                                            <input name="titulo" type="text" class="form-control" value="{{ publicacion.titulo }}" placeholder="Departamento 2 ambientes..." required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_moneda">Precio :</label>
+                                            <select name='moneda' class="form-control" value="{{ publicacion.moneda }}">
+                                                <!-- <option disabled selected> Moneda </option> -->
+                                                <option value="USD" {% if publicacion.moneda == 'USD' %}selected{% endif %}>Dolar Estadounidense (USD)</option>
+                                                <option value="ARS" {% if publicacion.moneda == 'ARS' %}selected{% endif %}>Pesos Argentinos(ARS)</option> 
+                                            </select>
+                                            <label>Precio máximo <small>(requerido)</small></label>
+                                            <input name="precio" type="number" class="form-control" value="{{ publicacion.precio|default:'0' }}" placeholder="3330000" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_tipo_operacion">Tipo operacion:</label>
+                                            <select name="tipo_operacion" id="id_tipo_operacion" class="form-control">
+                                                <option value="1" {% if publicacion.tipo_operacion.id == 1 %}selected{% endif %}>Alquiler</option>                            
+                                                <option value="2" {% if publicacion.tipo_operacion.id == 2 %}selected{% endif %}>Compra</option>
+                                            <!-- <option value="3">Venta</option> -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  End step 1 -->
+
+                            <div class="tab-pane" id="step2">
+                                <h4 class="info-text"> Detalles de tu búsqueda </h4>
+                                <div class="row">
+                                    <div class="col-sm-12"> 
+                                        <div class="col-sm-12"> 
+                                            <div class="form-group">
+                                                <label>Descripción :</label>
+                                                <textarea name="descripcion" class="form-control" >{{ publicacion.descripcion }}</textarea>
+                                            </div> 
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="id_localidad">Localidad:</label>
+                                                <select name="localidad" required id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ publicacion.localidad }}">
+                                                <!-- <option value="" selected>---------</option> -->
+                                            
+                                                <option value="1" {% if publicacion.localidad == '1' %}selected{% endif %}>Agronomía</option>
+                                            
+                                                <option value="2" {% if publicacion.localidad == '2' %}selected{% endif %}>Almagro</option>
+                                            
+                                                <option value="3" {% if publicacion.localidad == '3' %}selected{% endif %}>Balvanera</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="id_tipo_propiedad">Tipo propiedad:</label>
+                                                <select name="tipo_propiedad" required id="id_tipo_propiedad" class="form-control" value="{{ publicacion.tipo_propiedad }}">
+                                                <!-- <option value="" selected>---------</option> -->
+                                            
+                                                <option value="1" {% if publicacion.tipo_propiedad == '1' %}selected{% endif %}>Casa</option>
+                                            
+                                                <option value="2" {% if publicacion.tipo_propiedad == '2' %}selected{% endif %}>Departamento</option>
+                                            
+                                                <option value="3" {% if publicacion.tipo_propiedad == '3' %}selected{% endif %}>PH</option>
+                                            
+                                                <option value="4" {% if publicacion.tipo_propiedad == '4' %}selected{% endif %}>Quinta</option>
+                                            
+                                                <option value="5" {% if publicacion.tipo_propiedad == '5' %}selected{% endif %}>Garage</option>
+                                            
+                                                <option value="6" {% if publicacion.tipo_propiedad == '6' %}selected{% endif %}>Oficina comercial</option>
+                                            
+                                                <option value="7" {% if publicacion.tipo_propiedad == '7' %}selected{% endif %}>Local comercial</option>
+                                            
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="price-range">Ambientes:</label>
+                                                <input name="ambientes" type="text" class="span2" value="{{ publicacion.ambientes }}" data-slider-min="0" 
+                                                        data-slider-max="20" data-slider-step="1" 
+                                                        data-slider-value="{{ publicacion.ambientes }}" id="min-baths" ><br />
+                                                <b class="pull-left color">1</b> 
+                                                <b class="pull-right color">20</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-6">
+                                            <div class="form-group"></div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <!-- End step 2 -->
+
+                            <div class="tab-pane" id="step3">                                        
+                                <h4 class="info-text"> Actualizar publicación </h4>
+                                
+                            <!--  End step 4 -->
+
+                        </div>
+
+                        <div class="wizard-footer">
+                            <div class="pull-right">
+                                <input type='button' class='btn btn-next btn-primary' name='next' value='Siguiente' />
+                                <input type='submit' class='btn btn-finish btn-primary ' name='finish' value='Confirmar cambios' />
+                            </div>
+
+                            <div class="pull-left">
+                                <input type='button' class='btn btn-previous btn-default' name='previous' value='Anterior' />
+                            </div>
+                            <div class="clearfix"></div>                                            
+                        </div>	
+                    </form>
+                </div>
+                <!-- End submit form -->
+            </div>
+            <a class="btn btn-secondary" href="{% url 'acciones_usuario' %}"> << VOLVER </a> 
+        </div>
+    </div>
+</div>
+{% endblock %}

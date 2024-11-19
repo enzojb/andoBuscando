@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ANDO BUSCANDO | Soy Agente{% endblock %}
+
+{% block content %}
+    <!-- Mostrar mensajes -->
+    <div class="container">
+        {% if messages %}
+            <div class="alert alert-success fade-out">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">Hola : <span class="orange strong">{{ user.first_name }} {{ user.last_name }} </span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End page header --> 
+
+        <!-- property area -->
+        <div class="content-area user-profiel" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">   
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 profiel-container">
+
+                        <form method="post" action="{% url 'editar_soy_agente' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <!-- Errores del formulario -->
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for field in form %}
+                                            {% if field.errors %}
+                                                <li><strong>{{ field.label }}:</strong> 
+                                                    {% for error in field.errors %}
+                                                        {{ error }}
+                                                    {% endfor %}
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            <div class="profiel-header">
+                                <h3>
+                                    <b>INSCRIBITE</b> COMO AGENTE <br>
+                                    <small>Está información servirá para validar que sos agente inmobiliario.</small>
+                                </h3>
+                                <hr>
+                            </div>
+
+                            <div class="clear">
+                                <div class="col-sm-3 col-sm-offset-1">
+                                    <div class="picture-container">
+                                        <div class="picture">
+                                            <img src="{% static 'assets/img/avatar.jpg' %}" class="picture-src" id="wizardPicturePreview" title=""/>
+                                            <input type="file" id="wizard-picture" disabled>
+                                        </div>
+                                        <h6>Imagen de tu matrícula</h6>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3 padding-top-25">
+                                    <div class="form-group">
+                                        <label for="{{ form.is_agente.id_for_label }}">Soy Agente <small>(requerido)</small></label>
+                                        <input type="checkbox" name="is_agente" id="is_agente" class="form-control" {% if user.is_agente %}checked{% endif %} onclick="toggleMatriculaField()">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="{{ form.matricula.id_for_label }}">Número de matrícula</label>
+                                        <input name="matricula" type="text" id="matricula" class="form-control" placeholder="12345..." {% if user.is_agente %}value="{{ user.matricula }}"{% endif %}>
+                                    </div>
+                                </div>
+
+                            <div class="clear">
+                                <br>
+                                <hr>
+                                <br>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="form-group">
+                                        <label for="{{ form.password_current.id_for_label }}">Contraseña</small></label>
+                                        <input type="password" name="password_current" id="{{ form.password_current.id_for_label }}" class="form-control" placeholder="Ingresa tu contraseña para confirmar los cambios" required>
+                                    </div>
+                                </div>
+ 
+                            </div>
+                    
+                            <div class="col-sm-12 text-center">
+                                <br>
+                                <input type="submit" class='btn btn-finish btn-primary' name='finish' value='Confirmar cambios' />
+                            </div>
+                            <br>
+                    </form>
+
+                </div>
+            </div><!-- end row -->
+
+        </div>
+    </div>
+{% endblock %}

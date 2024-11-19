@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ANDO BUSCANDO | Acciones Usuario{% endblock %}
+
+{% block content %}
+        <div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h2 class="wow fadeInLeft animated">Desde aquí podrás manejar tus búsquedas</h2>
+                        <div class="title-line wow fadeInRight animated"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-area submit-property" style="background-color: #FCFCFC;">&nbsp;
+            <div class="container">
+                <div class="clearfix" > 
+                    <div class="wizard-container">         
+                    {% if publicaciones %}
+                        <div class="row">
+                            {% for publicacion in publicaciones %}
+                                <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="item-entry overflow">
+                                                <h5 class="card-title">{{ publicacion.titulo }}</h5>
+                                                <div class="dot-hr"></div>
+                                                <p class="card-text">{{ publicacion.descripcion }}</p>
+                                                <a href="{% url 'editar_publicacion' pk=publicacion.pk %}" class="btn btn-default">Editar</a>
+                                                <a href="{% url 'eliminar_publicacion' pk=publicacion.pk %}" class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No tienes publicaciones.</p>
+                    {% endif %}
+                    <br>
+                    <a href="{% url 'cargar_publicacion' %}" class="btn btn-primary">Crear publicación</a>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

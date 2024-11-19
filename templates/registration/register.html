@@ -25,7 +25,7 @@
                     <div class="col-md-12 col-xs-12 register-blocks">
                         <h2>Registrate:</h2>
                         
-                        <form method="post" action="{% url 'registro_cliente' %}">
+                        <form method="post" action="{% url 'registro_usuario' %}">
                             {% csrf_token %}
                             <!-- Errores del formulario -->
                             {% if form.errors %}

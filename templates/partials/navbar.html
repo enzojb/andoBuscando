@@ -72,7 +72,7 @@
                                     <div class="col-sm-3">
                                         <h5>Property</h5>
                                         <ul>
-                                            <li><a href="/propiedad/detalles_propiedad">Detalle por propiedad</a> </li>
+                                            
                                         </ul>
 
                                         <h5>Properties list</h5>
@@ -85,17 +85,19 @@
                                     <div class="col-sm-3">
                                         <h5>Property process</h5>
                                         <ul> 
-                                            <li><a href="/propiedad/cargar_propiedad">Cargar propiedades</a> </li>
+                                            <li><a href="{% url 'cargar_propiedad' %}">Cargar propiedades</a> </li>
+                                            <li><a href="{% url 'mis_propiedades' %}">Mis propiedades</a></li>
 
                                         </ul>
                                         <h5>Upload search</h5>
                                         <ul> 
-                                            <li><a href="/publicacion/cargar_publicacion">Cargar busquedas</a> </li>
+                                            <li><a href="{% url 'acciones_usuario' %}">Cargar busquedas</a> </li>
 
                                         </ul>
                                         <h5>Mi cuenta</h5>
                                         <ul>
                                             <li><a href="{% url 'perfil' %}">Perfil</a></li>
+                                            <li><a href="{% url 'soy_agente' %}">Soy Agente Inmobiliario</a></li>
                                             <li><a href="{% url 'cambiar_contrasenia' %}">Cambiar contraseña</a></li>
                                             <li><form action="{% url 'logout' %}" method="post">
                                                 {% csrf_token %}
