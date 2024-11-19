@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h2 class="wow fadeInLeft animated">Publicaciones</h2>
+                        <h2 class="wow fadeInLeft animated">Desde aquí podrás manejar tus búsquedas</h2>
                         <div class="title-line wow fadeInRight animated"></div>
                     </div>
                 </div>
@@ -19,16 +19,23 @@
                 <div class="clearfix" > 
                     <div class="wizard-container">         
                     {% if publicaciones %}
-                        <ul>
+                        <div class="row">
                             {% for publicacion in publicaciones %}
-                                <li>
-                                    <h3>{{ publicacion.titulo }}</h3>
-                                    <p>{{ publicacion.descripcion }}</p>
-                                    <a href="{% url 'editar_publicacion' pk=publicacion.pk %}" class="btn btn-default">Editar</a>
-                                    <a href="{% url 'eliminar_publicacion' pk=publicacion.pk %}" class="btn btn-danger">Eliminar</a>
-                                </li>
+                                <div class="col-sm-6 col-md-4 col-lg-3 p-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="item-entry overflow">
+                                                <h5 class="card-title">{{ publicacion.titulo }}</h5>
+                                                <div class="dot-hr"></div>
+                                                <p class="card-text">{{ publicacion.descripcion }}</p>
+                                                <a href="{% url 'editar_publicacion' pk=publicacion.pk %}" class="btn btn-default">Editar</a>
+                                                <a href="{% url 'eliminar_publicacion' pk=publicacion.pk %}" class="btn btn-danger">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             {% endfor %}
-                        </ul>
+                        </div>
                     {% else %}
                         <p>No tienes publicaciones.</p>
                     {% endif %}

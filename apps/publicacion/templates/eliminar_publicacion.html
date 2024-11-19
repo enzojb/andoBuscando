@@ -5,17 +5,34 @@
 
 {% block content %}
 
-<div class="container">
-    <h2>Confirmar eliminación</h2>
-    <p>¿Estás seguro de que deseas eliminar esta publicación?</p>
-    <h3>{{ publicacion.titulo }}</h3>
-    <p>{{ publicacion.descripcion }}</p>
-    
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a href="{% url 'acciones_usuario' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="content-area submit-property" style="background-color: #FCFCFC;">
+    <div class="container">
+        <div class="clearfix">
+            <div class="wizard-container">
+                <div class="row">
+                    <div class="col-12 p-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="item-entry overflow">
+                                    <h5>Confirmar eliminación</h5>
+                                    <div class="dot-hr"></div>
+                                    <p class="card-text">¿Estás seguro de que deseas eliminar esta publicación?</p>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ publicacion.titulo }}</h6>
+                                    <p class="card-text">{{ publicacion.descripcion }}</p>
+                                    
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <a href="{% url 'acciones_usuario' %}" class="btn btn-default">Cancelar</a>
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
+                
 {% endblock %}

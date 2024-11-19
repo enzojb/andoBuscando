@@ -65,21 +65,20 @@
                                             <input name="titulo" type="text" class="form-control" value="{{ publicacion.titulo }}" placeholder="Departamento 2 ambientes..." required>
                                         </div>
                                         <div class="form-group">
-                                            <select name='moneda' id="basic"a class="form-control">
-                                                <option disabled selected> Moneda </option>
-                                                <option value="USD">Dolar Estadounidense (USD)</option>
-                                                <option value="ARS">Pesos Argentinos(ARS)</option> 
+                                            <label for="id_moneda">Precio :</label>
+                                            <select name='moneda' class="form-control" value="{{ publicacion.moneda }}">
+                                                <!-- <option disabled selected> Moneda </option> -->
+                                                <option value="USD" {% if publicacion.moneda == 'USD' %}selected{% endif %}>Dolar Estadounidense (USD)</option>
+                                                <option value="ARS" {% if publicacion.moneda == 'ARS' %}selected{% endif %}>Pesos Argentinos(ARS)</option> 
                                             </select>
                                             <label>Precio máximo <small>(requerido)</small></label>
-                                            <input name="precio" type="text" class="form-control" value="{{ publicacion.precio }}" placeholder="3330000">
+                                            <input name="precio" type="number" class="form-control" value="{{ publicacion.precio|default:'0' }}" placeholder="3330000" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="id_tipo_operacion">Tipo operacion:</label>
                                             <select name="tipo_operacion" id="id_tipo_operacion" class="form-control">
-                                            <option value="1">Alquiler</option>
-                                        
-                                            <option value="2">Compra</option>
-                                        
+                                                <option value="1" {% if publicacion.tipo_operacion.id == 1 %}selected{% endif %}>Alquiler</option>                            
+                                                <option value="2" {% if publicacion.tipo_operacion.id == 2 %}selected{% endif %}>Compra</option>
                                             <!-- <option value="3">Venta</option> -->
                                             </select>
                                         </div>
@@ -104,36 +103,36 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="id_localidad">Localidad:</label>
-                                                <select name="localidad" required id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins">
-                                                <option value="" selected>---------</option>
+                                                <select name="localidad" required id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ publicacion.localidad }}">
+                                                <!-- <option value="" selected>---------</option> -->
                                             
-                                                <option value="1">Agronomía</option>
+                                                <option value="1" {% if publicacion.localidad == '1' %}selected{% endif %}>Agronomía</option>
                                             
-                                                <option value="2">Almagro</option>
+                                                <option value="2" {% if publicacion.localidad == '2' %}selected{% endif %}>Almagro</option>
                                             
-                                                <option value="3">Balvanera</option>
+                                                <option value="3" {% if publicacion.localidad == '3' %}selected{% endif %}>Balvanera</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="id_tipo_propiedad">Tipo propiedad:</label>
-                                                <select name="tipo_propiedad" required id="id_tipo_propiedad" class="form-control">
-                                                <option value="" selected>---------</option>
+                                                <select name="tipo_propiedad" required id="id_tipo_propiedad" class="form-control" value="{{ publicacion.tipo_propiedad }}">
+                                                <!-- <option value="" selected>---------</option> -->
                                             
-                                                <option value="1">Casa</option>
+                                                <option value="1" {% if publicacion.tipo_propiedad == '1' %}selected{% endif %}>Casa</option>
                                             
-                                                <option value="2">Departamento</option>
+                                                <option value="2" {% if publicacion.tipo_propiedad == '2' %}selected{% endif %}>Departamento</option>
                                             
-                                                <option value="3">PH</option>
+                                                <option value="3" {% if publicacion.tipo_propiedad == '3' %}selected{% endif %}>PH</option>
                                             
-                                                <option value="4">Quinta</option>
+                                                <option value="4" {% if publicacion.tipo_propiedad == '4' %}selected{% endif %}>Quinta</option>
                                             
-                                                <option value="5">Garage</option>
+                                                <option value="5" {% if publicacion.tipo_propiedad == '5' %}selected{% endif %}>Garage</option>
                                             
-                                                <option value="6">Oficina comercial</option>
+                                                <option value="6" {% if publicacion.tipo_propiedad == '6' %}selected{% endif %}>Oficina comercial</option>
                                             
-                                                <option value="7">Local comercial</option>
+                                                <option value="7" {% if publicacion.tipo_propiedad == '7' %}selected{% endif %}>Local comercial</option>
                                             
                                             </select>
                                             </div>
@@ -161,26 +160,8 @@
                             <!-- End step 2 -->
 
                             <div class="tab-pane" id="step3">                                        
-                                <h4 class="info-text"> Finalizar y publicar </h4>
-                                <div class="row">  
-                                    <div class="col-sm-12">
-                                        <div class="">
-                                            <p>
-                                                <label><strong>Términos y condiciones:</strong></label>
-                                                Al aceptar los términos y condiciones estás accediendo a
-                                                que AndoBuscando comparta tu información.
-                                            </p>
-
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="terminos" required {% if publicacion.terminos %} checked {% endif %}/> <strong>Aceptar términos y condiciones.</strong>
-                                                </label>
-                                            </div> 
-
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
+                                <h4 class="info-text"> Actualizar publicación </h4>
+                                
                             <!--  End step 4 -->
 
                         </div>
@@ -199,7 +180,8 @@
                     </form>
                 </div>
                 <!-- End submit form -->
-            </div> 
+            </div>
+            <a class="btn btn-secondary" href="{% url 'acciones_usuario' %}"> << VOLVER </a> 
         </div>
     </div>
 </div>

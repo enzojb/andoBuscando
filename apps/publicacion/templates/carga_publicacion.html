@@ -73,7 +73,7 @@
                                                 <option value="ARS">Pesos Argentinos(ARS)</option> 
                                             </select>
                                             <label>Precio máximo <small>(requerido)</small></label>
-                                            <input name="precio" type="text" class="form-control" placeholder="3330000">
+                                            <input name="precio" type="number" class="form-control" placeholder="3330000" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="id_tipo_operacion">Tipo operacion:</label>
@@ -203,6 +203,7 @@
                 </div>
                 <!-- End submit form -->
             </div> 
+            <a class="btn btn-secondary" href="{% url 'acciones_usuario' %}"> << VOLVER </a>
         </div>
     </div>
 </div>
