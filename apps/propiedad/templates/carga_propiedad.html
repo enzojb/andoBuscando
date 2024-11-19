@@ -51,7 +51,7 @@
                       <div class="col-sm-4 col-sm-offset-1">
                           <div class="picture-container">
                               <div class="picture">
-                                <img src="" class="picture-src" id="wizardPicturePreview" title=""/>
+                                <img src="" class="picture-src" id="wizardPicturePreview" style="height: 100%;" title=""/>
                                 <input type="file" name="foto" accept="image/*" id="wizard-picture" required>
                               </div> 
                           </div>
@@ -102,7 +102,7 @@
                               <div class="form-group">
                                   <label for="id_localidad">Localidad :</label>
                                   <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" required>
-                                    <option value="" selected>---------</option>
+                                    <option value="" selected disabled>---------</option>
                                     <option value="1">Agronomía</option>
                                     <option value="2">Almagro</option>
                                     <option value="3">Balvanera</option>
@@ -121,7 +121,7 @@
                               <div class="form-group">
                                 <label for="id_tipo_propiedad">Tipo propiedad :</label>
                                 <select name="tipo_propiedad" class="form-control" required>
-                                  <option value="" selected>---------</option>
+                                  <option value="" selected disabled>---------</option>
                                   <option value="1">Casa</option>
                                   <option value="2">Departamento</option>
                                   <option value="3">PH</option>
@@ -135,8 +135,8 @@
                           
                           <div class="col-sm-6">
                               <div class="form-group">
-                                  <label for="property-images">sube mas imagenes :</label>
-                                  <input class="form-control" type="file" id="property-images">
+                                  <label for="property-images">sube mas imagenes : (Proximamente)</label>
+                                  <input class="form-control" type="file" id="property-images" disabled>
                               </div>
                           </div>
                       </div>

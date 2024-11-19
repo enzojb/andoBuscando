@@ -51,7 +51,7 @@
                       <div class="col-sm-4 col-sm-offset-1">
                           <div class="picture-container">
                               <div class="picture">
-                                <img src="" class="picture-src" id="wizardPicturePreview" title=""/>
+                                <img src="{{ propiedad.foto.url }}" class="picture-src" style="height: 100%;" id="wizardPicturePreview" title=""/>
                                 <input type="file" name="foto" accept="image/*" id="wizard-picture">
                               </div> 
                           </div>
@@ -59,21 +59,21 @@
                       <div class="col-sm-6">
                           <div class="form-group">
                             <label for="id_titulo">Título :</label>
-                            <input type="text" name="titulo"  maxlength="50" class="form-control">
+                            <input type="text" name="titulo"  maxlength="50" class="form-control" value="{{propiedad.titulo}}">
                           </div>
                           <div class="form-group">
                             <label for="id_moneda">Precio de la propiedad :</label>
-                            <select name="moneda" class="form-control" >
-                              <option selected disabled>---------</option>
+                            <select name="moneda" class="form-control" value="{{propiedad.moneda}}">
+                              <option disabled>---------</option>
                               <option value="USD">USD</option>
                               <option value="ARS">ARS</option>
                             </select>
-                            <input type="number" name="precio" step="0.01"  placeholder="3330000" class="form-control">
+                            <input type="number" name="precio" step="0.01"  placeholder="3330000" class="form-control" value="{{propiedad.precio}}">
                           </div>
                           <div class="form-group">
                               <label>Tipo de operacion</label>
-                              <select id="basic" class="form-control" name="tipo_operacion">
-                                  <option disabled selected> Operacion </option>
+                              <select id="basic" class="form-control" name="tipo_operacion" value="{{propiedad.tipo_operacion}}">
+                                  <option disabled> Operacion </option>
                                   <option value="1">Alquiler</option>
 
                                   <option value="2">Compra</option>
@@ -93,7 +93,7 @@
                           <div class="col-sm-12"> 
                               <div class="form-group">
                                 <label for="id_descripcion">Descripcion :</label>
-                                <textarea name="descripcion" class="form-control" ></textarea>
+                                <textarea name="descripcion" class="form-control" >{{propiedad.descripcion}}</textarea>
                               </div> 
                           </div> 
                       </div>
@@ -102,8 +102,8 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_localidad">Localidad :</label>
-                                  <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" >
-                                    <option value="" selected disabled>---------</option>
+                                  <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{propiedad.localidad}}">
+                                    <option value="" disabled>---------</option>
                                     <option value="1">Agronomía</option>
                                     <option value="2">Almagro</option>
                                     <option value="3">Balvanera</option>
@@ -113,7 +113,7 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                 <label for="id_direccion">Dirección :</label>
-                                <input type="text" name="direccion" maxlength="55" class="form-control" >
+                                <input type="text" name="direccion" maxlength="55" class="form-control" value="{{propiedad.direccion}}">
                               </div>
                           </div>
                       </div>
@@ -121,8 +121,8 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                 <label for="id_tipo_propiedad">Tipo propiedad :</label>
-                                <select name="tipo_propiedad" class="form-control" >
-                                  <option value="" selected disabled>---------</option>
+                                <select name="tipo_propiedad" class="form-control" value="{{propiedad.tipo_propiedad}}">
+                                  <option value=""  disabled>---------</option>
                                   <option value="1">Casa</option>
                                   <option value="2">Departamento</option>
                                   <option value="3">PH</option>
@@ -136,8 +136,8 @@
                           
                           <div class="col-sm-6">
                               <div class="form-group">
-                                  <label for="property-images">sube mas imagenes :</label>
-                                  <input class="form-control" type="file" id="property-images">
+                                  <label for="property-images">sube mas imagenes :(Proximamente)</label>
+                                  <input class="form-control" type="file" id="property-images" disabled>
                               </div>
                           </div>
                       </div>
@@ -145,9 +145,9 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_ambientes">ambientes:</label>
-                                  <input type="number" name="ambientes"  class="span2" value="" min="0" 
+                                  <input type="number" name="ambientes"  class="span2" min="0" 
                                          data-slider-max="20" data-slider-step="1" 
-                                         data-slider-value="5" id="min-baths" ><br />
+                                         data-slider-value="{{propiedad.ambientes}}" id="min-baths" value="{{propiedad.ambientes}}"><br />
                                   <b class="pull-left color">1</b> 
                                   <b class="pull-right color">20</b>
                               </div>
@@ -156,9 +156,9 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_metros_cuadrados">Metros cuadrados de la propiedad (m2) :</label>
-                                  <input type="number" name="metros_cuadrados"  class="span2" value="" min="0" 
+                                  <input type="number" name="metros_cuadrados"  class="span2" value="{{propiedad.metros_cuadrados}}" min="0" 
                                   data-slider-max="1200" data-slider-step="1" 
-                                  data-slider-value="70" id="property-geo" ><br />
+                                  data-slider-value="{{propiedad.metros_cuadrados}}" id="property-geo" ><br />
                            <b class="pull-left color">20m2</b> 
                            <b class="pull-right color">1200m2</b>
                               </div>
@@ -173,7 +173,7 @@
               <!-- End step 2 -->
 
               <div class="tab-pane" id="step3">                                        
-                  <h4 class="info-text"> Finalizar y publicar </h4>
+                  <h4 class="info-text"> Finalizar y guardar </h4>
                   <div class="row">  
                       <div class="col-sm-12">
                           <div class="">

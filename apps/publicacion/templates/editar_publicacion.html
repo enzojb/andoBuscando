@@ -71,8 +71,13 @@
                                                 <option value="USD" {% if publicacion.moneda == 'USD' %}selected{% endif %}>Dolar Estadounidense (USD)</option>
                                                 <option value="ARS" {% if publicacion.moneda == 'ARS' %}selected{% endif %}>Pesos Argentinos(ARS)</option> 
                                             </select>
+                                            
+                                        </div>
+                                        <div class="form-group">
                                             <label>Precio máximo <small>(requerido)</small></label>
-                                            <input name="precio" type="number" class="form-control" value="{{ publicacion.precio|default:'0' }}" placeholder="3330000" required>
+                                            <input name="precio" type="number" class="form-control" value="{{ publicacion.precio }}" required>
+
+
                                         </div>
                                         <div class="form-group">
                                             <label for="id_tipo_operacion">Tipo operacion:</label>
