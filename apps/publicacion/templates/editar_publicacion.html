@@ -82,9 +82,12 @@
                                         <div class="form-group">
                                             <label for="id_tipo_operacion">Tipo operacion:</label>
                                             <select name="tipo_operacion" id="id_tipo_operacion" class="form-control">
-                                                <option value="1" {% if publicacion.tipo_operacion.id == 1 %}selected{% endif %}>Alquiler</option>                            
-                                                <option value="2" {% if publicacion.tipo_operacion.id == 2 %}selected{% endif %}>Compra</option>
-                                            <!-- <option value="3">Venta</option> -->
+                                                <option value="" selected>---------</option>
+                                                {% for tipo in form.tipo_operacion.field.queryset %}
+                                                    <option value="{{ tipo.id }}" {% if tipo.id == publicacion.tipo_operacion.id %}selected{% endif %}>
+                                                        {{ tipo.tipo_operacion }}
+                                                    </option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
@@ -110,12 +113,11 @@
                                                 <label for="id_localidad">Localidad:</label>
                                                 <select name="localidad" required id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ publicacion.localidad }}">
                                                 <!-- <option value="" selected>---------</option> -->
-                                            
-                                                <option value="1" {% if publicacion.localidad == '1' %}selected{% endif %}>Agronomía</option>
-                                            
-                                                <option value="2" {% if publicacion.localidad == '2' %}selected{% endif %}>Almagro</option>
-                                            
-                                                <option value="3" {% if publicacion.localidad == '3' %}selected{% endif %}>Balvanera</option>
+                                                {% for localidad in form.localidad.field.queryset %}
+                                                <option value="{{ localidad.id }}" {% if localidad.id == publicacion.localidad.id %}selected{% endif %}>
+                                                    {{ localidad.localidad }}  <!-- Aquí asumo que 'localidad' es el nombre del campo que deseas mostrar -->
+                                                </option>
+                                                {% endfor %}
                                                 </select>
                                             </div>
                                         </div>
@@ -124,20 +126,11 @@
                                                 <label for="id_tipo_propiedad">Tipo propiedad:</label>
                                                 <select name="tipo_propiedad" required id="id_tipo_propiedad" class="form-control" value="{{ publicacion.tipo_propiedad }}">
                                                 <!-- <option value="" selected>---------</option> -->
-                                            
-                                                <option value="1" {% if publicacion.tipo_propiedad == '1' %}selected{% endif %}>Casa</option>
-                                            
-                                                <option value="2" {% if publicacion.tipo_propiedad == '2' %}selected{% endif %}>Departamento</option>
-                                            
-                                                <option value="3" {% if publicacion.tipo_propiedad == '3' %}selected{% endif %}>PH</option>
-                                            
-                                                <option value="4" {% if publicacion.tipo_propiedad == '4' %}selected{% endif %}>Quinta</option>
-                                            
-                                                <option value="5" {% if publicacion.tipo_propiedad == '5' %}selected{% endif %}>Garage</option>
-                                            
-                                                <option value="6" {% if publicacion.tipo_propiedad == '6' %}selected{% endif %}>Oficina comercial</option>
-                                            
-                                                <option value="7" {% if publicacion.tipo_propiedad == '7' %}selected{% endif %}>Local comercial</option>
+                                                {% for tipo in form.tipo_propiedad.field.queryset %}
+                                                <option value="{{ tipo.id }}" {% if tipo.id == publicacion.tipo_propiedad.id %}selected{% endif %}>
+                                                    {{ tipo.tipo_propiedad }} <!-- Asumiendo que 'tipo_propiedad' es el campo que deseas mostrar -->
+                                                </option>
+                                                {% endfor %}
                                             
                                             </select>
                                             </div>

@@ -7,10 +7,15 @@ class CargarPublicacionForm(forms.ModelForm):
         model = Publicacion
         fields = ['titulo', 'moneda', 'ambientes', 'descripcion', 'localidad', 'tipo_propiedad', 'tipo_operacion', 'precio']
 
-# Si la única diferencia entre crear y editar una publicación es cómo manejas la instancia 
-# del modelo en la vista, puedes unificar ambos formularios en un solo formulario PublicacionForm.
 class EditarPublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion
         fields = ['titulo', 'moneda', 'ambientes', 'descripcion', 'localidad', 'tipo_propiedad', 'tipo_operacion', 'precio']
-    
+
+class BuscarPublicacionesForm(forms.ModelForm):
+    min_precio = forms.DecimalField(required=False, label="Precio mínimo")
+    max_precio = forms.DecimalField(required=False, label="Precio máximo")
+
+    class Meta:
+        model = Publicacion
+        fields = ['localidad', 'tipo_operacion', 'tipo_propiedad']

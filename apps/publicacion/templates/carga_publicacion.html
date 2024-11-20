@@ -20,11 +20,8 @@
             <div class="wizard-container"> 
 
                 <div class="wizard-card ct-wizard-orange" id="wizardProperty">
-                    <!-- <form action="" method=""> -->
-                    <form action="" method="post"> <!-- Usamos el método POST para enviar los datos del formulario al servidor, lo que permitirá crear una nueva publicación. --> 
-                        {% csrf_token %} <!-- El csrf_token se utiliza para proteger el formulario contra ataques de falsificación de solicitudes entre sitios (CSRF). Sin él, el formulario no será válido. -->
-                        
-                        <!-- Si el formulario contiene errores de validación (por ejemplo, campos obligatorios vacíos), se muestra un mensaje de error en un cartel rojo debajo del formulario. Los errores son generados automáticamente por Django. -->
+                    <form action="" method="post">
+                        {% csrf_token %}
                         {% if form.errors %}
                             <div class="alert alert-danger">
                                 <ul>
@@ -36,39 +33,28 @@
                                 </ul>
                             </div>
                         {% endif %}
-            
-                        <!-- El uso de {{ form.as_p }} genera automáticamente el formulario en formato básico, donde cada campo se presenta en un párrafo. Decidimos no usar esta opción porque queremos personalizar la apariencia del formulario. -->
-                        <!-- {{ form.as_p }} -->
-
-                        <!-- En lugar de usar el formulario predeterminado con form.as_p, hemos optado por personalizar cada campo para tener un diseño más controlado y adaptado a nuestra interfaz de usuario. -->
                         <div class="wizard-header">
                             <h3>
                                 <b>Carga</b> TUS REQUISITOS <br>
                                 <small>En tres simples pasos podrás publicar.</small>
                             </h3>
                         </div>
-
                         <ul>
                             <li><a href="#step1" data-toggle="tab">Paso 1 </a></li>
                             <li><a href="#step2" data-toggle="tab">Paso 2 </a></li>
                             <li><a href="#step3" data-toggle="tab">Finalizar </a></li>
                         </ul>
-
                         <div class="tab-content">
                             <div class="tab-pane" id="step1">
                                 <div class="row p-b-15  ">
                                     <h4 class="info-text"> Empecemos con la informacion básica</h4>
-
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Título <small>(requerido)</small></label>
-                                            <!-- <input name="propertyname" type="text" class="form-control" placeholder="Departamento 2 ambientes..."> -->
-                                             <!-- A todos los input en el atributo "name" tenemos que asignarle el nombre que declaramos en "fields" del forms, que es el que está en la base de datos -->
                                             <input name="titulo" type="text" class="form-control" placeholder="Departamento 2 ambientes...">
                                         </div>
                                         <div class="form-group">
-                                            <select name='moneda' id="basic"a class="form-control">
-                                                <option disabled selected> Moneda </option>
+                                            <select name='moneda' id="basic" class="form-control">
                                                 <option value="USD">Dolar Estadounidense (USD)</option>
                                                 <option value="ARS">Pesos Argentinos(ARS)</option> 
                                             </select>
@@ -76,13 +62,12 @@
                                             <input name="precio" type="number" class="form-control" placeholder="3330000" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_tipo_operacion">Tipo operacion:</label>
+                                            <label for="id_tipo_operacion">Tipo operacion<small>(requerido)</small></label>
                                             <select name="tipo_operacion" id="id_tipo_operacion" class="form-control">
-                                          <option value="1">Alquiler</option>
-                                        
-                                          <option value="2">Compra</option>
-                                        
-                                          <!-- <option value="3">Venta</option> -->
+                                                <option value="" selected>---------</option>
+                                                {% for tipo in form.tipo_operacion.field.queryset %}
+                                                  <option value="{{ tipo.id }}">{{ tipo.tipo_operacion }}</option>
+                                                {% endfor %}        
                                             </select>
                                         </div>
                                     </div>
@@ -108,12 +93,9 @@
                                                 <label for="id_localidad">Localidad:</label>
                                                 <select name="localidad" required id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins">
                                               <option value="" selected>---------</option>
-                                            
-                                              <option value="1">Agronomía</option>
-                                            
-                                              <option value="2">Almagro</option>
-                                            
-                                              <option value="3">Balvanera</option>
+                                              {% for localidad in form.localidad.field.queryset %}
+                                                <option value="{{ localidad.id }}">{{ localidad.localidad }}</option>
+                                              {% endfor %}
                                                 </select>
                                             </div>
                                         </div>
@@ -122,21 +104,9 @@
                                                 <label for="id_tipo_propiedad">Tipo propiedad:</label>
                                                 <select name="tipo_propiedad" required id="id_tipo_propiedad" class="form-control">
                                               <option value="" selected>---------</option>
-                                            
-                                              <option value="1">Casa</option>
-                                            
-                                              <option value="2">Departamento</option>
-                                            
-                                              <option value="3">PH</option>
-                                            
-                                              <option value="4">Quinta</option>
-                                            
-                                              <option value="5">Garage</option>
-                                            
-                                              <option value="6">Oficina comercial</option>
-                                            
-                                              <option value="7">Local comercial</option>
-                                            
+                                              {% for tipo in form.tipo_propiedad.field.queryset %}
+                                              <option value="{{ tipo.id }}">{{ tipo.tipo_propiedad }}</option>
+                                                {% endfor %}
                                             </select>
                                             </div>
                                         </div>

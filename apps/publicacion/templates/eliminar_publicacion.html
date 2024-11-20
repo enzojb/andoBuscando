@@ -5,25 +5,24 @@
 
 {% block content %}
 
-<div class="content-area submit-property" style="background-color: #FCFCFC;">
-    <div class="container">
-        <div class="clearfix">
-            <div class="wizard-container">
-                <div class="row">
-                    <div class="col-12 p-3">
-                        <div class="card">
-                            <div class="card-body">
+<div class="properties-area recent-property" style="background-color: #FFF;">
+    <div class="container"> 
+        <div class="row  pr0 padding-top-40 properties-page">
+            <div class="col-md-6 padding-bottom-40 large-search"> 
+                <div class="search-form wow pulse" style="text-align: center;" data-wow-delay="0.8s">
+                    <form action="" method="get" class="form-inline">
+                        <div class="col-md-8">
+                            <div class="form-group">     
                                 <div class="item-entry overflow">
                                     <h5>Confirmar eliminación</h5>
                                     <div class="dot-hr"></div>
                                     <p class="card-text">¿Estás seguro de que deseas eliminar esta publicación?</p>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ publicacion.titulo }}</h6>
                                     <p class="card-text">{{ publicacion.descripcion }}</p>
-                                    
-                                    <form method="post">
+                                    <form method="post"> 
                                         {% csrf_token %}
-                                        <a href="{% url 'acciones_usuario' %}" class="btn btn-default">Cancelar</a>
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <a href="{% url 'acciones_usuario' %}" class="btn btn-default">Cancelar</a>
                                     </form>
                                 </div>
                             </div>

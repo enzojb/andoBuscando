@@ -21,57 +21,82 @@
     <div class="container"> 
         <div class="row  pr0 padding-top-40 properties-page">
             <div class="col-md-12 padding-bottom-40 large-search"> 
-                <div class="search-form wow pulse">
-                    <form action="" class=" form-inline">
+                <div class="search-form wow pulse" style="text-align: center;" data-wow-delay="0.8s">
+                    <form action="" method="get" class="form-inline">
                         <div class="col-md-12">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Busqueda por características">
-                            </div>
-                            <div class="col-md-4">                                   
-                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Localidad">
-                                    <option>Palermo</option>
-                                    <option>Belgrano</option>
-                                    <option>Caballito</option>
-                                    <option>Balvanera</option>
-                                    <option>Nunez</option>
+                            <div class="form-group">                                   
+                                <select name="localidad" id="localidad" class="selectpicker" data-live-search="true" title="Localidad">
+                                    <option value="" selected disabled>Localidad</option>
+                                    <option value="1">Almagro</option>
+                                    <option value="2">Agronomía</option>
+                                    <option value="3">Balvanera</option>
+                                    <option value="4">Barracas</option>             
+                                    <option value="5">Belgrano</option>
+                                    <option value="6">Boedo</option>
+                                    <option value="7">Caballito</option>
+                                    <option value="8">Chacarita</option>
+                                    <option value="9">Coghlan</option>
+                                    <option value="10">Colegiales</option>
+                                    <option value="11">Constitución</option>
+                                    <option value="12">Flores</option>
+                                    <option value="13">Floresta</option>
+                                    <option value="14">La Boca</option>
+                                    <option value="15">La Paternal</option>
+                                    <option value="16">Liniers</option>
+                                    <option value="17">Mataderos</option>
+                                    <option value="18">Monte Castro</option>
+                                    <option value="19">Monserrat</option>
+                                    <option value="20">Nueva Pompeya</option>
+                                    <option value="21">Núñez</option>
+                                    <option value="22">Palermo</option>
+                                    <option value="23">Parque Avellaneda</option>
+                                    <option value="24">Parque Chacabuco</option>
+                                    <option value="25">Parque Chas</option>
+                                    <option value="26">Parque Patricios</option>
+                                    <option value="27">Puerto Madero</option>
+                                    <option value="28">Recoleta</option>
+                                    <option value="29">Retiro</option>
+                                    <option value="30">Saavedra</option>
+                                    <option value="31">San Cristóbal</option>
+                                    <option value="32">San Nicolás</option>
+                                    <option value="33">San Telmo</option>
+                                    <option value="34">Vélez Sársfield</option>
+                                    <option value="35">Versalles</option>
+                                    <option value="36">Villa Crespo</option>
+                                    <option value="37">Villa del Parque</option>
+                                    <option value="38">Villa Devoto</option>
+                                    <option value="39">Villa General Mitre</option>
+                                    <option value="40">Villa Lugano</option>
+                                    <option value="41">Villa Luro</option>
+                                    <option value="42">Villa Ortúzar</option>
+                                    <option value="43">Villa Pueyrredón</option>
+                                    <option value="44">Villa Real</option>
+                                    <option value="45">Villa Riachuelo</option>
+                                    <option value="46">Villa Santa Rita</option>
+                                    <option value="47">Villa Soldati</option>
+                                    <option value="48">Villa Urquiza</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">                                     
-                                <select id="basic" class="selectpicker show-tick form-control">
-                                    <option>Operacion</option>
-                                    <option>Alquilar </option>
-                                    <option>Comprar</option>  
-
+                            <div class="form-group">                                     
+                                <select name="tipo_operacion" id="tipo_operacion" class="selectpicker show-tick form-control">
+                                    <option disabled selected> Operacion </option>
+                                    <option value="1">Alquiler</option>
+                                    <option value="2">Compra</option> 
                                 </select>
                             </div>
-                        </div>
-                        <div class="col-md-12 ">
-                            <div class="search-row">   
-
-                                <div class="col-md-4">
+                            <div class="form-group">
                                     <label for="price-range">Rango de precios:</label>
-                                    <input type="number" class="form-control" placeholder="Min($)">
-                                    <input type="number" class="form-control" placeholder="Max($)"><br />
-                                </div>
-                                <!-- End of  -->  
-
-                                <div class="col-md-4">
-                                    <label for="price-range">Ambientes:</label>
-                                    <input type="text" class="span2" value="" data-slider-min="0" 
-                                           data-slider-max="20" data-slider-step="1" 
-                                           data-slider-value="[0,4]" id="min-baths" ><br />
-                                    <b class="pull-left color">1</b> 
-                                    <b class="pull-right color">20</b>
-                                </div>
-                                <!-- End of  -->
-                            
-                            </div>   
-                        </div>                     
+                                    <input type="number" name="min_precio" class="form-control" placeholder="Min($)">
+                                    <input type="number" name="max_precio" class="form-control" placeholder="Max($)"><br />
+                            </div>
+                            <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                                <!-- End of  -->                
                     </form>
                 </div>
             </div>
 
-            <div class="col-md-12  clear"> 
+            <div class="col-md-12 clear"> 
                 <div class="col-xs-10 page-subheader sorting pl0">
                     <ul class="sort-by-list">
                         <li class="active">
@@ -92,7 +117,7 @@
                     {% for publicacion in publicaciones%}
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
-
+                            
                             <div class="item-entry overflow">
                                 <h5><a href="property-1.html"> {{publicacion.titulo}} </a></h5>
                                 <div class="dot-hr"></div>
@@ -112,248 +137,7 @@
                         </div>
                     </div> 
                     {% endfor %}
-<!--
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
 
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 2 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 3 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 4 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 5 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 6 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 7 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 8 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 9 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 10 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-      
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 11 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3 p0">
-                        <div class="box-two proerty-item">
-                            
-                            <div class="item-entry overflow">
-                                <h5><a href="property-1.html"> Título 12 </a></h5>
-                                <div class="dot-hr"></div>
-                                <span class="pull-left"><b> Moneda:</b> usd </span>
-                                <span class="proerty-price pull-right"> $ 300,000 </span>
-                                <p style="display: none;">Características: Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                <div class="property-icon">
-                                    <label>Loc: Palermo |</label>
-                                    <label>Amb: 5 |</label>
-                                    <label>Fecha public: 02/05/2024</label>
-                                </div>
-                                <br>
-                                <div class="text-right">
-                                    <a href="{% url 'contactar_usuario' %}"><button type="submit" class="btn btn-default">Contactar</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> q-->
                 </div>
             </div>
 
@@ -361,12 +145,10 @@
                 <div class="pull-right">
                     <div class="pagination">
                         <ul>
-                            <li><a href="#">Prev</a></li>
                             <li><a href="#">1</a></li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#">4</a></li>
-                            <li><a href="#">Next</a></li>
                         </ul>
                     </div>
                 </div>                
