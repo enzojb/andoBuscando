@@ -103,9 +103,9 @@
                                   <label for="id_localidad">Localidad :</label>
                                   <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" required>
                                     <option value="" selected disabled>---------</option>
-                                    <option value="1">Agronomía</option>
-                                    <option value="2">Almagro</option>
-                                    <option value="3">Balvanera</option>
+                                    {% for localidad in form.localidad.field.queryset %}
+                                        <option value="{{ localidad.id }}">{{ localidad.localidad }}</option>
+                                    {% endfor %}
                                   </select>
                               </div>
                           </div>
@@ -122,13 +122,9 @@
                                 <label for="id_tipo_propiedad">Tipo propiedad :</label>
                                 <select name="tipo_propiedad" class="form-control" required>
                                   <option value="" selected disabled>---------</option>
-                                  <option value="1">Casa</option>
-                                  <option value="2">Departamento</option>
-                                  <option value="3">PH</option>
-                                  <option value="4">Quinta</option>
-                                  <option value="5">Garage</option>
-                                  <option value="6">Oficina comercial</option>
-                                  <option value="7">Local comercial</option>
+                                  {% for tipo in form.tipo_propiedad.field.queryset %}
+                                        <option value="{{ tipo.id }}">{{ tipo.tipo_propiedad }}</option>
+                                    {% endfor %}
                                 </select>
                               </div>
                           </div>

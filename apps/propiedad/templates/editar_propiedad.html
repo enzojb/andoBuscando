@@ -65,20 +65,19 @@
                             <label for="id_moneda">Precio de la propiedad :</label>
                             <select name="moneda" class="form-control" value="{{propiedad.moneda}}">
                               <option disabled>---------</option>
-                              <option value="USD">USD</option>
-                              <option value="ARS">ARS</option>
+                              <option value="USD" {% if propiedad.moneda == 'USD' %}selected{% endif %}>Dolar Estadounidense (USD)</option>
+                              <option value="ARS" {% if propiedad.moneda == 'ARS' %}selected{% endif %}>Pesos Argentinos(ARS)</option> 
                             </select>
                             <input type="number" name="precio" step="0.01"  placeholder="3330000" class="form-control" value="{{propiedad.precio}}">
                           </div>
                           <div class="form-group">
                               <label>Tipo de operacion</label>
-                              <select id="basic" class="form-control" name="tipo_operacion" value="{{propiedad.tipo_operacion}}">
+                              <select id="basic" class="form-control" name="tipo_operacion">
                                   <option disabled> Operacion </option>
-                                  <option value="1">Alquiler</option>
-
-                                  <option value="2">Compra</option>
+                                  <option value="1" {% if propiedad.tipo_operacion.id == 1 %}selected{% endif %}>Alquiler</option>                            
+                                  <option value="2" {% if propiedad.tipo_operacion.id == 2 %}selected{% endif %}>Compra</option>
                                 
-                                  <option value="3">Venta</option>
+                                  <option value="3"{% if propiedad.tipo_operacion.id == 3 %}selected{% endif %}>Venta</option>
                               </select>
                           </div>
                       </div>
@@ -102,11 +101,11 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_localidad">Localidad :</label>
-                                  <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{propiedad.localidad}}">
-                                    <option value="" disabled>---------</option>
-                                    <option value="1">Agronomía</option>
-                                    <option value="2">Almagro</option>
-                                    <option value="3">Balvanera</option>
+                                  <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins">
+                                    {% for localidad in form.localidad.field.queryset %}
+                                    <option value="{{ localidad.id }}" {% if propiedad.localidad.id == localidad.id %}selected{% endif %}>{{ localidad.localidad }}</option>
+                                    {% endfor %}
+
                                   </select>
                               </div>
                           </div>
@@ -122,14 +121,9 @@
                               <div class="form-group">
                                 <label for="id_tipo_propiedad">Tipo propiedad :</label>
                                 <select name="tipo_propiedad" class="form-control" value="{{propiedad.tipo_propiedad}}">
-                                  <option value=""  disabled>---------</option>
-                                  <option value="1">Casa</option>
-                                  <option value="2">Departamento</option>
-                                  <option value="3">PH</option>
-                                  <option value="4">Quinta</option>
-                                  <option value="5">Garage</option>
-                                  <option value="6">Oficina comercial</option>
-                                  <option value="7">Local comercial</option>
+                                    {% for tipo in form.tipo_propiedad.field.queryset %}
+                                        <option value="{{ tipo.id }}" {% if propiedad.tipo_propiedad.id == tipo.id %}selected{% endif %}>{{ tipo.tipo_propiedad }}</option>
+                                    {% endfor %}
                                 </select>
                               </div>
                           </div>

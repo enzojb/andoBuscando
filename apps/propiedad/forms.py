@@ -96,5 +96,5 @@ class BuscarPropiedadForm(forms.ModelForm):
 
     class Meta:
         model = Propiedad
-        fields = ['localidad', 'tipo_operacion', 'moneda']
+        fields = ['localidad', 'tipo_operacion', 'moneda','tipo_propiedad' ]
         
