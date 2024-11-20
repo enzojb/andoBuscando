@@ -30,70 +30,39 @@
                 <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="" href="property.html">Property</a></li> -->
                 {% if user.is_authenticated %}
                 <li class="dropdown yamm-fw" data-wow-delay="0.1s">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">¡Hola, {{ user.first_name }} {{ user.last_name }}! <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">¡Hola, {{ user.first_name }} {{ user.last_name }}! {% if user.is_agente %}(Agente){% endif %} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <div class="yamm-content">
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5>Home pages</h5>
-                                        <ul>
-                                            <li>
-                                                <a href="index.html">Home Style 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="index-2.html">Home Style 2</a>
-                                            </li>
-                                            <li>
-                                                <a href="index-3.html">Home Style 3</a>
-                                            </li>
-                                            <li>
-                                                <a href="index-4.html">Home Style 4</a>
-                                            </li>
-                                            <li>
-                                                <a href="index-5.html">Home Style 5</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Pages and blog</h5>
-                                        <ul>
-                                            <li><a href="blog.html">Blog listing</a>  </li>
-                                            <li><a href="single.html">Blog Post (full)</a>  </li>
-                                            <li><a href="single-right.html">Blog Post (Right)</a>  </li>
-                                            <li><a href="single-left.html">Blog Post (left)</a>  </li>
-                                            <li><a href="contact.html">Contact style (1)</a> </li>
-                                            <li><a href="contact-3.html">Contact style (2)</a> </li>
-                                            <li><a href="contact_3.html">Contact style (3)</a> </li>
-                                            <li><a href="faq.html">FAQ page</a> </li> 
-                                            <li><a href="404.html">404 page</a>  </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Property</h5>
-                                        <ul>
-                                            
-                                        </ul>
-
-                                        <h5>Properties list</h5>
-                                        <ul>
-                                            <li><a href="properties.html">Properties list style (1)</a> </li> 
-                                            <li><a href="properties-2.html">Properties list style (2)</a> </li> 
-                                            <li><a href="properties-3.html">Properties list style (3)</a> </li> 
-                                        </ul>                                               
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h5>Property process</h5>
+                                    <div class="col-sm-6">
+                                        <h5>Cliente</h5>
                                         <ul> 
-                                            <li><a href="{% url 'cargar_propiedad' %}">Cargar propiedades</a> </li>
-                                            <li><a href="{% url 'mis_propiedades' %}">Mis propiedades</a></li>
+                                            <li><a href="{% url 'acciones_usuario' %}">Cargar una búsqueda</a> </li>
 
                                         </ul>
-                                        <h5>Upload search</h5>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        {% if user.is_agente %}
+                                        <h5>Agente</h5>
                                         <ul> 
-                                            <li><a href="{% url 'acciones_usuario' %}">Cargar busquedas</a> </li>
+                                            <li><a href="{% url 'cargar_propiedad' %}">Cargar una propiedad</a> </li>
+                                            <li><a href="{% url 'mis_propiedades' %}">Ver mis propiedades</a></li>
 
                                         </ul>
+                                        {% endif %}
+                                    </div>
+                                    <!-- <div class="col-sm-3">
+                                        {% if user.is_moderador %}
+                                        <h5>Moderador</h5>
+                                        <ul> 
+                                            <li><a href="{% url ' ' %}">Acción de moderador</a> </li>
+                                            <li><a href="{% url ' ' %}">Acción de moderador</a></li>
+
+                                        </ul>
+                                        {% endif %}                                            
+                                    </div> -->
+                                    <div class="col-sm-6">
                                         <h5>Mi cuenta</h5>
                                         <ul>
                                             <li><a href="{% url 'perfil' %}">Perfil</a></li>

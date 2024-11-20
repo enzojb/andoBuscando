@@ -52,7 +52,7 @@
                             {% endif %}
                             <div class="profiel-header">
                                 <h3>
-                                    <b>INSCRIBITE</b> COMO AGENTE <br>
+                                    <b>REGISTRATE</b> COMO AGENTE <br>
                                     <small>Está información servirá para validar que sos agente inmobiliario.</small>
                                 </h3>
                                 <hr>
@@ -72,32 +72,31 @@
                                 <div class="col-sm-3 padding-top-25">
                                     <div class="form-group">
                                         <label for="{{ form.is_agente.id_for_label }}">Soy Agente <small>(requerido)</small></label>
-                                        <input type="checkbox" name="is_agente" id="is_agente" class="form-control" {% if user.is_agente %}checked{% endif %} onclick="toggleMatriculaField()">
+                                        <input type="checkbox" name="is_agente" id="{{ form.is_agente.id_for_label }}" class="form-control" {% if user.is_agente %}checked disabled{% endif %} required>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="{{ form.matricula.id_for_label }}">Número de matrícula</label>
-                                        <input name="matricula" type="text" id="matricula" class="form-control" placeholder="12345..." {% if user.is_agente %}value="{{ user.matricula }}"{% endif %}>
+                                        <label for="{{ form.matricula.id_for_label }}">Número de matrícula <small>(requerido)</small></label>
+                                        <input type="text" name="matricula" id="{{ form.matricula.id_for_label }}" class="form-control" placeholder="12345..." {% if user.is_agente %}value="{{ user.matricula }}" disabled{% endif %} required>
                                     </div>
                                 </div>
 
                             <div class="clear">
                                 <br>
+                                {% if user.is_agente %}
+                                <div class="col-sm-12 text-center">
+                                    <br>
+                                    <p>Ya fuiste registrado como Agente Inmobiliario</p>
+                                </div>
                                 <hr>
                                 <br>
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="form-group">
-                                        <label for="{{ form.password_current.id_for_label }}">Contraseña</small></label>
-                                        <input type="password" name="password_current" id="{{ form.password_current.id_for_label }}" class="form-control" placeholder="Ingresa tu contraseña para confirmar los cambios" required>
-                                    </div>
-                                </div>
- 
+                                {% else %} 
                             </div>
-                    
                             <div class="col-sm-12 text-center">
                                 <br>
-                                <input type="submit" class='btn btn-finish btn-primary' name='finish' value='Confirmar cambios' />
+                                <input type="submit" class='btn btn-finish btn-primary' name='finish' value='Registrarse' />
                             </div>
+                            {% endif %}
                             <br>
                     </form>
 

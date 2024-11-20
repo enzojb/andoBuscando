@@ -25,17 +25,9 @@ class EditarPerfilForm(forms.ModelForm):
         return password
     
 class EditarSoyAgenteForm(forms.ModelForm):
-    password_current = forms.CharField(widget=forms.PasswordInput, label="Contraseña", required=True)
-
     class Meta:
         model = Usuario
         fields = ['is_agente', 'matricula']
-
-    def clean_password_current(self):
-        password = self.cleaned_data['password_current']
-        if not self.instance.check_password(password):
-            raise ValidationError("La contraseña actual introducida es incorrecta.")
-        return password
     
 class EditarContraseniaForm(forms.ModelForm):
     password_current = forms.CharField(widget=forms.PasswordInput, label="Contraseña actual", required=True)

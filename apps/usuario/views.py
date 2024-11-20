@@ -72,7 +72,7 @@ class EditarSoyAgenteView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, 'Tu perfil ha sido actualizado exitosamente.')
+        messages.success(self.request, 'Fuiste inscripto cómo agente exitosamente.')
         return super().form_valid(form)
 
 class CambiarContraseniaView(LoginRequiredMixin, TemplateView):
