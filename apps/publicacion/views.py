@@ -48,13 +48,13 @@ class PublicacionListView(ListView):
         return queryset
         
 # Vista de acciones usuario
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(LoginRequiredMixin, ListView):
+    model = Publicacion
     template_name = "acciones_usuario.html"
+    context_object_name = 'publicaciones'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['publicaciones'] = Publicacion.objects.filter(cliente=self.request.user)
-        return context
+    def get_queryset(self):
+        return Publicacion.objects.filter(cliente=self.request.user)
 
 # Vista para cargar busquedas
 class PublicacionCargaView(CreateView):
