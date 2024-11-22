@@ -88,9 +88,8 @@ class CrearPropiedadView(CreateView):
         form.instance.agente = self.request.user
         messages.success(self.request, 'Se cargo la propiedad, ya puede visualizarlo.')
         propiedad = form.save(commit=False)
-        imagen = self.request.FILES.get('foto') 
+        #imagen = self.request.FILES.get('foto') 
 
-        # Procesar la imagen con Pillow si existe
        
 
         propiedad.save()  # Guardar el modelo con la imagen procesada
