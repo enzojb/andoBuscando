@@ -20,7 +20,7 @@
 
     <h2>¿Estás seguro/a que deseás eliminar tu cuenta de forma permanente?</h2>
     <br>
-    <form method="post" action="{% url 'eliminar_cuenta' %}">
+    <form method="post">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
       <a href="{% url 'index' %}" class="btn btn-secondary">Cancelar</a>
