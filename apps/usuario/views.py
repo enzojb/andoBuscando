@@ -8,15 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from .forms import UsuarioForm, EditarPerfilForm, EditarSoyAgenteForm, EditarContraseniaForm
 
-class RegistroView(TemplateView):
-    template_name = 'registration/register.html'
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect('index')
-        return super().get(request, *args, **kwargs)
-
-class RegistroUsuarioView(CreateView):
+class RegistroView(CreateView):
     model = Usuario
     form_class = UsuarioForm 
     template_name = 'registration/register.html'
@@ -30,11 +22,8 @@ class RegistroUsuarioView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, 'Registro exitoso, ya puede iniciar sesión con sus datos.')
         return super().form_valid(form)
-
-class PerfilView(LoginRequiredMixin, TemplateView):
-    template_name = 'profile.html'
     
-class EditarPerfilView(LoginRequiredMixin, UpdateView):
+class PerfilView(LoginRequiredMixin, UpdateView):
     model = Usuario
     form_class = EditarPerfilForm 
     template_name = 'profile.html'
@@ -53,10 +42,7 @@ class EditarPerfilView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, 'Tu perfil ha sido actualizado exitosamente.')
         return super().form_valid(form)
 
-class SoyAgenteView(LoginRequiredMixin, TemplateView):
-    template_name = 'soy_agente.html'
-
-class EditarSoyAgenteView(LoginRequiredMixin, UpdateView):
+class SoyAgenteView(LoginRequiredMixin, UpdateView):
     model = Usuario
     form_class = EditarSoyAgenteForm 
     template_name = 'soy_agente.html'
@@ -74,11 +60,8 @@ class EditarSoyAgenteView(LoginRequiredMixin, UpdateView):
         form.save()
         messages.success(self.request, 'Fuiste inscripto cómo agente exitosamente.')
         return super().form_valid(form)
-
-class CambiarContraseniaView(LoginRequiredMixin, TemplateView):
-    template_name = 'change_password.html'
     
-class EditarContraseniaView(LoginRequiredMixin, UpdateView):
+class CambiarContraseniaView(LoginRequiredMixin, UpdateView):
     model = Usuario
     form_class = EditarContraseniaForm
     template_name = 'change_password.html'

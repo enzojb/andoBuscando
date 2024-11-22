@@ -26,7 +26,6 @@ class PublicacionListView(ListView):
         tipo_operacion = self.request.GET.get('tipo_operacion')
         min_precio = self.request.GET.get('min_precio')
         max_precio = self.request.GET.get('max_precio')
-        ambientes = self.request.GET.get('ambientes')
 
         if localidad:
             queryset = queryset.filter(localidad=localidad)
@@ -49,13 +48,13 @@ class PublicacionListView(ListView):
         return queryset
         
 # Vista de acciones usuario
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(LoginRequiredMixin, ListView):
+    model = Publicacion
     template_name = "acciones_usuario.html"
+    context_object_name = 'publicaciones'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['publicaciones'] = Publicacion.objects.filter(cliente=self.request.user)
-        return context
+    def get_queryset(self):
+        return Publicacion.objects.filter(cliente=self.request.user)
 
 # Vista para cargar busquedas
 class PublicacionCargaView(CreateView):
@@ -99,7 +98,6 @@ class PublicacionEdicionView(UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, 'Tu publicación se editó exitosamente.')
         return super().form_valid(form)
 
 # Vista para eliminar publicaciones  
@@ -115,6 +113,5 @@ class PublicacionEliminacionView(DeleteView):
     def delete(self, request, *args, **kwargs):
         publicacion = self.get_object()
         publicacion.delete()
-        messages.success(request, 'La publicación ha sido eliminada exitosamente.')
         return redirect(self.success_url)
 
