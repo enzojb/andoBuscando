@@ -26,7 +26,6 @@ class PublicacionListView(ListView):
         tipo_operacion = self.request.GET.get('tipo_operacion')
         min_precio = self.request.GET.get('min_precio')
         max_precio = self.request.GET.get('max_precio')
-        ambientes = self.request.GET.get('ambientes')
 
         if localidad:
             queryset = queryset.filter(localidad=localidad)
@@ -99,7 +98,6 @@ class PublicacionEdicionView(UpdateView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, 'Tu publicación se editó exitosamente.')
         return super().form_valid(form)
 
 # Vista para eliminar publicaciones  
@@ -115,6 +113,5 @@ class PublicacionEliminacionView(DeleteView):
     def delete(self, request, *args, **kwargs):
         publicacion = self.get_object()
         publicacion.delete()
-        messages.success(request, 'La publicación ha sido eliminada exitosamente.')
         return redirect(self.success_url)
 

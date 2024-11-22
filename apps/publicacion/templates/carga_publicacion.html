@@ -54,6 +54,7 @@
                                             <input name="titulo" type="text" class="form-control" placeholder="Departamento 2 ambientes...">
                                         </div>
                                         <div class="form-group">
+                                            <label>Moneda <small>(requerido)</small></label>
                                             <select name='moneda' id="basic" class="form-control">
                                                 <option value="USD">Dolar Estadounidense (USD)</option>
                                                 <option value="ARS">Pesos Argentinos(ARS)</option> 
@@ -62,7 +63,7 @@
                                             <input name="precio" type="number" class="form-control" placeholder="3330000" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="id_tipo_operacion">Tipo operacion<small>(requerido)</small></label>
+                                            <label for="id_tipo_operacion">Tipo operacion <small>(requerido)</small></label>
                                             <select name="tipo_operacion" id="id_tipo_operacion" class="form-control">
                                                 <option value="" selected>---------</option>
                                                 {% for tipo in form.tipo_operacion.field.queryset %}
