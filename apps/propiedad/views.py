@@ -91,25 +91,7 @@ class CrearPropiedadView(CreateView):
         imagen = self.request.FILES.get('foto') 
 
         # Procesar la imagen con Pillow si existe
-        if imagen:
-            with Image.open(imagen) as img:
-                img = img.convert('RGB')  # Asegúrate de que la imagen esté en RGB
-                img.thumbnail((1500, 800))  # Redimensionar la imagen
-
-                # Guardar la imagen en memoria
-                buffer = io.BytesIO()
-                img.save(buffer, format='JPEG')  # Cambia el formato si es necesario
-                buffer.seek(0)
-
-                # Crear un nuevo archivo cargado en memoria
-                propiedad.foto = InMemoryUploadedFile(
-                    buffer,  # Archivo en memoria
-                    'ImageField',  # Campo relacionado
-                    imagen.name,  # Nombre original del archivo
-                    'image/jpeg',  # Tipo MIME
-                    buffer.getbuffer().nbytes,  # Tamaño del archivo
-                    None  # Opcional: Charset
-                )
+       
 
         propiedad.save()  # Guardar el modelo con la imagen procesada
         return super().form_valid(form)
