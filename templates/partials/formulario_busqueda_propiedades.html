@@ -87,7 +87,6 @@
                     select.appendChild(option);
                 });
     
-                // Refrescar selectpicker (si usás Bootstrap Select)
                 if (typeof $ !== 'undefined' && $.fn.selectpicker) {
                     $('.selectpicker').selectpicker('refresh');
                 }
@@ -96,4 +95,4 @@
                 console.error('Error cargando provincias:', error);
             });
     });
-</script>    
+</script>
