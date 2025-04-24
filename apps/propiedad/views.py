@@ -188,3 +188,10 @@ class MisPropiedadesView(ListView, LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
     
     
+import requests
+from django.http import JsonResponse
+
+def obtener_barrios(request):
+    url = "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/barrios/barrios.geojson"
+    response = requests.get(url)
+    return JsonResponse(response.json())

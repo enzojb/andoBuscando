@@ -2,7 +2,7 @@
 <form method="get" action="/propiedad/" class=" form-inline">
     <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
     <div class="form-group">                                   
-        <select name="localidad" id="localidad-select" class="selectpicker" data-live-search="true" data-live-search-style="begins">
+        <select name="barrio" id="barrio-select" class="selectpicker" data-live-search="true" data-live-search-style="begins">
             <option value="" selected disabled>Localidad</option>
         </select>
     </div>
@@ -74,25 +74,26 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        fetch('https://apis.datos.gob.ar/georef/api/provincias')
+        fetch('propiedad/api/barrios/')
             .then(response => response.json())
             .then(data => {
-                const select = document.getElementById('localidad-select');
-                const provincias = data.provincias;
-    
-                provincias.forEach((provincia, index) => {
+                const select = document.getElementById('barrio-select');
+                const barrios = data.features;
+
+                barrios.forEach(barrio => {
+                    const nombreBarrio = barrio.properties.BARRIO;
                     const option = document.createElement('option');
-                    option.value = provincia.id;
-                    option.text = provincia.nombre;
+                    option.value = nombreBarrio;
+                    option.text = nombreBarrio;
                     select.appendChild(option);
                 });
-    
+
                 if (typeof $ !== 'undefined' && $.fn.selectpicker) {
                     $('.selectpicker').selectpicker('refresh');
                 }
             })
             .catch(error => {
-                console.error('Error cargando provincias:', error);
+                console.error('Error cargando barrios:', error);
             });
     });
 </script>
