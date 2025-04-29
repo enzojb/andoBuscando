@@ -101,12 +101,9 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_localidad">Localidad :</label>
-                                  <select name="localidad" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" required>
-                                    <option value="" selected disabled>---------</option>
-                                    {% for localidad in form.localidad.field.queryset %}
-                                        <option value="{{ localidad.id }}">{{ localidad.localidad }}</option>
-                                    {% endfor %}
-                                  </select>
+                                  <select name="localidad" id="barrio-select" class="selectpicker" data-live-search="true" data-live-search-style="begins">
+                                    <option value="" selected disabled>Localidad</option>
+                                </select>
                               </div>
                           </div>
                           <div class="col-sm-6">

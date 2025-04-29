@@ -193,5 +193,11 @@ from django.http import JsonResponse
 
 def obtener_barrios(request):
     url = "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/barrios/barrios.geojson"
-    response = requests.get(url)
-    return JsonResponse(response.json())
+    
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()  # tira excepción si no es 200 OK
+        data = response.json()
+        return JsonResponse(data)
+    except (requests.RequestException, ValueError) as e:
+        return JsonResponse({'error': 'No se pudo obtener los barrios', 'detalle': str(e)}, status=500)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Propiedad, PropiedadFoto, Localidad, TipoPropiedad, TipoOperacion
+from .models import Propiedad, PropiedadFoto, TipoPropiedad, TipoOperacion
 
 @admin.register(Propiedad)
 class PropiedadAdmin(admin.ModelAdmin):
@@ -17,10 +17,6 @@ class PropiedadAdmin(admin.ModelAdmin):
 class PropiedadFotoAdmin(admin.ModelAdmin):
     list_display = ('propiedad', 'ubicacion_url', 'descripcion_foto')
     search_fields = ('propiedad__direccion', 'descripcion_foto')
-
-@admin.register(Localidad)
-class LocalidadAdmin(admin.ModelAdmin):
-    list_display = ('localidad',)
 
 @admin.register(TipoPropiedad)
 class TipoPropiedadAdmin(admin.ModelAdmin):

@@ -1,7 +1,7 @@
 from django.db import models
 
 class Propiedad(models.Model):
-    localidad = models.ForeignKey('propiedad.Localidad', on_delete=models.CASCADE)
+    localidad = models.CharField(max_length=25)
     agente = models.ForeignKey('usuario.Usuario', on_delete=models.CASCADE)
     tipo_propiedad = models.ForeignKey('propiedad.TipoPropiedad', on_delete=models.CASCADE)
     tipo_operacion = models.ForeignKey('propiedad.TipoOperacion', on_delete=models.CASCADE)
@@ -36,8 +36,3 @@ class PropiedadFoto(models.Model):
     def __str__(self):
         return f"Foto de {self.propiedad} - {self.descripcion_foto}"
 
-class Localidad(models.Model):
-    localidad = models.CharField(max_length=100)
-
-    def __str__(self) -> str:
-        return self.localidad
