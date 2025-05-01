@@ -1,7 +1,7 @@
 from django.db import models
 
 class Propiedad(models.Model):
-    localidad = models.CharField(max_length=25)
+    barrio = models.CharField(max_length=25)
     agente = models.ForeignKey('usuario.Usuario', on_delete=models.CASCADE)
     tipo_propiedad = models.ForeignKey('propiedad.TipoPropiedad', on_delete=models.CASCADE)
     tipo_operacion = models.ForeignKey('propiedad.TipoOperacion', on_delete=models.CASCADE)

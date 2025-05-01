@@ -3,13 +3,13 @@ from .models import Propiedad, PropiedadFoto, TipoPropiedad, TipoOperacion
 
 @admin.register(Propiedad)
 class PropiedadAdmin(admin.ModelAdmin):
-    list_display = ('titulo','agente','foto','direccion', 'localidad', 'tipo_propiedad','tipo_operacion', 'precio', 'moneda', 'ambientes', 'metros_cuadrados', 'fecha_creacion', 'fecha_actualizacion')
-    list_filter = ('tipo_propiedad', 'localidad', 'moneda') 
-    search_fields = ('direccion', 'descripcion', 'localidad__localidad', 'tipo_propiedad__tipo_propiedad', 'tipo_operacion__tipo_operacion')
+    list_display = ('titulo','agente','foto','direccion', 'barrio', 'tipo_propiedad','tipo_operacion', 'precio', 'moneda', 'ambientes', 'metros_cuadrados', 'fecha_creacion', 'fecha_actualizacion')
+    list_filter = ('tipo_propiedad', 'barrio', 'moneda') 
+    search_fields = ('direccion', 'descripcion', 'barrio__barrio', 'tipo_propiedad__tipo_propiedad', 'tipo_operacion__tipo_operacion')
     ordering = ('-fecha_creacion',)
 
     fieldsets = (
-        (None, {'fields': ('direccion', 'localidad', 'tipo_propiedad','tipo_operacion','foto', 'precio', 'moneda')}),
+        (None, {'fields': ('direccion', 'barrio', 'tipo_propiedad','tipo_operacion','foto', 'precio', 'moneda')}),
         ('Detalles de la propiedad', {'fields': ('descripcion', 'ambientes', 'metros_cuadrados')}),
     )
 

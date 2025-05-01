@@ -5,13 +5,13 @@ from apps.propiedad.models import Propiedad
 class CrearPropiedadForm(forms.ModelForm):
     class Meta:
         model = Propiedad
-        fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','localidad','direccion','tipo_propiedad','ambientes','metros_cuadrados']
+        fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','barrio','direccion','tipo_propiedad','ambientes','metros_cuadrados']
 
 
 class EditarPropiedadForm(forms.ModelForm):
     class Meta:
         model = Propiedad
-        fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','localidad','direccion','tipo_propiedad','ambientes','metros_cuadrados']
+        fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','barrio','direccion','tipo_propiedad','ambientes','metros_cuadrados']
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Hacer que los campos no sean obligatorios
@@ -55,11 +55,11 @@ class EditarPropiedadForm(forms.ModelForm):
             return self.instance.descripcion
         return descripcion
 
-    def clean_localidad(self):
-        localidad = self.cleaned_data.get('localidad')
-        if not localidad:
-            return self.instance.localidad
-        return localidad
+    def clean_barrio(self):
+        barrio = self.cleaned_data.get('barrio')
+        if not barrio:
+            return self.instance.barrio
+        return barrio
 
     def clean_direccion(self):
         direccion = self.cleaned_data.get('direccion')
@@ -96,5 +96,5 @@ class BuscarPropiedadForm(forms.ModelForm):
 
     class Meta:
         model = Propiedad
-        fields = ['localidad', 'tipo_operacion', 'moneda','tipo_propiedad' ]
+        fields = ['barrio', 'tipo_operacion', 'moneda','tipo_propiedad' ]
         
