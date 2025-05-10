@@ -110,14 +110,8 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="id_localidad">Localidad:</label>
-                                                <select name="localidad" required id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ publicacion.localidad }}">
-                                                <!-- <option value="" selected>---------</option> -->
-                                                {% for localidad in form.localidad.field.queryset %}
-                                                <option value="{{ localidad.id }}" {% if localidad.id == publicacion.localidad.id %}selected{% endif %}>
-                                                    {{ localidad.localidad }}  <!-- Aquí asumo que 'localidad' es el nombre del campo que deseas mostrar -->
-                                                </option>
-                                                {% endfor %}
+                                                <label for="id_barrio">Barrio:</label>
+                                                <select name="barrio" id="barrio-select" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ publicacion.barrio }}">
                                                 </select>
                                             </div>
                                         </div>

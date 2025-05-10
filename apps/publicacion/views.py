@@ -22,13 +22,13 @@ class PublicacionListView(ListView):
     def get_queryset(self):
         queryset = Publicacion.objects.all()
 
-        localidad = self.request.GET.get('localidad')
+        barrio = self.request.GET.get('barrio')
         tipo_operacion = self.request.GET.get('tipo_operacion')
         min_precio = self.request.GET.get('min_precio')
         max_precio = self.request.GET.get('max_precio')
 
-        if localidad:
-            queryset = queryset.filter(localidad=localidad)
+        if barrio:
+            queryset = queryset.filter(barrio=barrio)
         if tipo_operacion:
             queryset = queryset.filter(tipo_operacion=tipo_operacion)
         if min_precio:

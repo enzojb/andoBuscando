@@ -101,10 +101,7 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_barrio">Barrio :</label>
-                                  <select name="barrio" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins">
-                                    {% for barrio in form.barrio.field.queryset %}
-                                    <option value="{{ barrio.id }}" {% if propiedad.barrio.id == barrio.id %}selected{% endif %}>{{ barrio.barrio }}</option>
-                                    {% endfor %}
+                                  <select name="barrio" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ propiedad.barrio }}">
 
                                   </select>
                               </div>

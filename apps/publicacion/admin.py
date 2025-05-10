@@ -3,19 +3,19 @@ from .models import Publicacion, AgentePublicacion, PublicacionTipoOper, Publica
 
 @admin.register(Publicacion)
 class PublicacionAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'cliente', 'localidad', 'tipo_propiedad', 'tipo_operacion', 'precio', 'moneda', 'ambientes')
-    list_filter = ('tipo_operacion', 'tipo_propiedad', 'localidad', 'moneda')
+    list_display = ('titulo', 'cliente', 'barrio', 'tipo_propiedad', 'tipo_operacion', 'precio', 'moneda', 'ambientes')
+    list_filter = ('tipo_operacion', 'tipo_propiedad', 'barrio', 'moneda')
     search_fields = ('titulo', 'descripcion', 'cliente__first_name', 'cliente__last_name', 'cliente__dni')
     ordering = ('-precio',)
 
     fieldsets = (
-        (None, {'fields': ('titulo', 'cliente', 'localidad', 'tipo_propiedad', 'tipo_operacion')}),
+        (None, {'fields': ('titulo', 'cliente', 'barrio', 'tipo_propiedad', 'tipo_operacion')}),
         ('Detalles de la publicación', {'fields': ('descripcion', 'precio', 'moneda', 'ambientes')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('titulo', 'cliente', 'localidad', 'tipo_propiedad', 'tipo_operacion', 'descripcion', 'precio', 'moneda', 'ambientes')
+            'fields': ('titulo', 'cliente', 'barrio', 'tipo_propiedad', 'tipo_operacion', 'descripcion', 'precio', 'moneda', 'ambientes')
         }),
     )
 
