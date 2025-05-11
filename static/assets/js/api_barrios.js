@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (typeof $ !== 'undefined' && $.fn.selectpicker) {
                 $('.selectpicker').selectpicker('refresh');
             }
+            const total = barrios.length;
+            console.log(total)
+            document.getElementById("total_barrios").setAttribute("data-percent", total);
+
         })
         .catch(error => {
             console.error('Error cargando barrios:', error);

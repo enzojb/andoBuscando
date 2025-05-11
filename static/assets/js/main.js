@@ -84,46 +84,83 @@ $(document).ready(function () {
         $SearchToggle.slideToggle(300);
     });
 
-    setTimeout(function () {
-        $('#counter').text('0');
-        $('#counter1').text('0');
-        $('#counter2').text('0');
-        $('#counter3').text('0');
-        setInterval(function () {
-            var curval = parseInt($('#counter').text());
-            var curval1 = parseInt($('#counter1').text().replace(' ', ''));
-            var curval2 = parseInt($('#counter2').text());
-            var curval3 = parseInt($('#counter3').text());
-            if (curval <= 1007) {
-                $('#counter').text(curval + 1);
-            }
-            if (curval1 <= 1280) {
-                $('#counter1').text(sdf_FTS((curval1 + 20), 0, ' '));
-            }
-            if (curval2 <= 145) {
-                $('#counter2').text(curval2 + 1);
-            }
-            if (curval3 <= 1022) {
-                $('#counter3').text(curval3 + 1);
-            }
-        }, 2);
+ setTimeout(function () {
+        // Inicializamos en 0
+        $('#contador').text('0');
+        $('#contador1').text('0');
+        $('#contador2').text('0');
+        $('#contador3').text('0');
+
+        // Obtenemos los máximos desde el HTML
+        const max0 = parseInt($('#contador').closest('.chart').data('percent'));
+        const max1 = parseInt($('#contador1').closest('.chart').data('percent'));
+        const max2 = parseInt($('#contador2').closest('.chart').data('percent'));
+        const max3 = parseInt($('#contador3').closest('.chart').data('percent'));
+
+        // Creamos una función para iniciar el conteo
+        function startCounting() {
+            let progreso = 0;
+            const maxGlobal = Math.max(max0, max1, max2, max3);
+
+            const intervalo = setInterval(() => {
+                progreso++;
+                let val0 = parseInt($('#contador').text());
+                let val1 = parseInt($('#contador1').text());
+                let val2 = parseInt($('#contador2').text());
+                let val3 = parseInt($('#contador3').text());
+
+                if (val0 < max0) {
+                    $('#contador').text(val0 + 1);
+                }
+                if (val1 < max1) {
+                    $('#contador1').text(val1 + 1);
+                }
+                if (val2 < max2) {
+                    $('#contador2').text(val2 + 1);
+                }
+                if (val3 < max3) {
+                    $('#contador3').text(val3 + 1);
+                }
+
+                if (progreso >= maxGlobal) {
+                    clearInterval(intervalo);
+                }
+            }, 50); // Ajustar la velocidad si es necesario
+        }
+
+        // Creamos el observador
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Cuando el elemento es visible en la pantalla, iniciamos el conteo
+                    startCounting();
+                    observer.unobserve(entry.target); // Deja de observar una vez que ha comenzado
+                }
+            });
+        }, { threshold: 0.5 }); // 0.5 significa que el 50% del elemento debe ser visible para disparar el conteo
+
+        // Observamos cada contador
+        observer.observe(document.querySelector('#contador'));
+        observer.observe(document.querySelector('#contador1'));
+        observer.observe(document.querySelector('#contador2'));
+        observer.observe(document.querySelector('#contador3'));
+        
     }, 500);
 
-    function sdf_FTS(_number, _decimal, _separator) {
-        var decimal = (typeof (_decimal) != 'undefined') ? _decimal : 2;
-        var separator = (typeof (_separator) != 'undefined') ? _separator : '';
-        var r = parseFloat(_number)
-        var exp10 = Math.pow(10, decimal);
-        r = Math.round(r * exp10) / exp10;
-        rr = Number(r).toFixed(decimal).toString().split('.');
-        b = rr[0].replace(/(\d{1,3}(?=(\d{3})+(?:\.\d|\b)))/g, "\$1" + separator);
-        r = (rr[1] ? b + '.' + rr[1] : b);
 
-        return r;
-    }
+    
 
 })
-
+fetch('/contador/datos/')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('total_usuarios').setAttribute('data-percent', data.usuarios);
+      document.getElementById('total_propiedades').setAttribute('data-percent', data.propiedades);
+      document.getElementById('total_publicaciones').setAttribute('data-percent', data.publicaciones);
+    })
+    .catch(error => {
+      console.error('Error al cargar los datos del contador:', error);
+    });
 // Initializing WOW.JS
 
 new WOW().init();

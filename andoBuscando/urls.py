@@ -29,6 +29,7 @@ urlpatterns = [
     path('usuario/', include('apps.usuario.urls'), name='usuario'),
     path('publicacion/', include('apps.publicacion.urls'), name='publicacion'),
     path('propiedad/', include('apps.propiedad.urls'), name='propiedad'),
+    path('contador/', include('apps.contador.urls'), name='contador'),
 ]
 
 if settings.DEBUG:
