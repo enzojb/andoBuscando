@@ -15,6 +15,23 @@
         {% endif %}
     </div>
 
+<!--Welcome area -->
+<div class="count-area" style="background-color: #FCFCFC; padding-bottom: 15px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 percent-blocks m-main">
+                        <div class="video-container">
+                            <video src="{% static 'assets/img/AndoBuscandoIntro.mp4' %}" controls></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
 <div class="slider-area">
     <div class="slider">
         <div id="bg-slider" class="owl-carousel owl-theme">
@@ -36,21 +53,6 @@
         </div>
     </div>
 </div>
-<!--Welcome area -->
-<div class="count-area" style="background-color: #FCFCFC; padding-bottom: 15px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-                <h2>¿CÓMO EMPEZAR?</h2>
-                <div class="row">
-                    <div class="col-md-12 col-xs-12 percent-blocks m-main">
-                        <video src="{% static 'assets/img/AndoBuscandoIntro.mp4' %}" width="800" controls></video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>    
 
 <div class="Welcome-area">
     <div class="container">
@@ -112,6 +114,40 @@
     </div>
 </div>
 
+<!-- login-invitation area -->
+<div class="login-invitation-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
+                <div class="asks-first">
+                    <div class="asks-first-circle">
+                        <span class="fa fa-search"></span>
+                    </div>
+                    <div class="asks-first-info">
+                        <h2>¿QUERÉS QUE UN AGENTE INMOBILIARIO HAGA LA BUSQUEDA POR VOS?</h2>
+                    </div>
+                    <div class="asks-first-arrow">
+                        <a href="{% url 'cargar_publicacion' %}"><span class="fa fa-angle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12 col-md-offset-0">
+                <div  class="asks-first">
+                    <div class="asks-first-circle">
+                        <span class="fa fa-usd"></span>
+                    </div>
+                    <div class="asks-first-info">
+                        <h2>¿QUERÉS TENER UN INGRESO AYUDANDO A ALGUIEN CON SU BUSQUEDA?</h2>
+                    </div>
+                    <div class="asks-first-arrow">
+                        <a href="{% url 'busquedas' %}"><span class="fa fa-angle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--TESTIMONIALS -->
 <div class="testimonial-area recent-property" style="background-color: #FCFCFC; padding-bottom: 15px;">
     <div class="container">
@@ -162,40 +198,6 @@
                                 <img src="{% static 'assets/img/spinetta.png' %}" alt="">
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- login-invitation area -->
-<div class="login-invitation-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-10 col-sm-offset-1 col-md-offset-0 col-xs-12">
-                <div class="asks-first">
-                    <div class="asks-first-circle">
-                        <span class="fa fa-search"></span>
-                    </div>
-                    <div class="asks-first-info">
-                        <h2>¿QUERÉS QUE UN AGENTE INMOBILIARIO HAGA LA BUSQUEDA POR VOS?</h2>
-                    </div>
-                    <div class="asks-first-arrow">
-                        <a href="{% url 'registro' %}"><span class="fa fa-angle-right"></span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12 col-md-offset-0">
-                <div  class="asks-first">
-                    <div class="asks-first-circle">
-                        <span class="fa fa-usd"></span>
-                    </div>
-                    <div class="asks-first-info">
-                        <h2>¿QUERÉS TENER UN INGRESO AYUDANDO A ALGUIEN CON SU BUSQUEDA?</h2>
-                    </div>
-                    <div class="asks-first-arrow">
-                        <a href="{% url 'registro' %}"><span class="fa fa-angle-right"></span></a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 
-<form method="get" action="/propiedad/" class=" form-inline" id="busqueda-form">
+<form method="get" action="/publicacion/busquedas/" class=" form-inline" id="busqueda-form">
     <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
     <div class="form-group">                                   
         <select name="barrio" id="barrio-select" class="form-control" data-live-search="true" data-live-search-style="begins">
@@ -118,37 +118,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-
-
-<!--
-<form method="get" action="/propiedad/">
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Buscar</button>
-</form> -->
-
-<!--
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('propiedad/api/barrios/')
-            .then(response => response.json())
-            .then(data => {
-                const select = document.getElementById('barrio-select');
-                const barrios = data.features;
-
-                barrios.forEach(barrio => {
-                    const nombreBarrio = barrio.properties.BARRIO;
-                    const option = document.createElement('option');
-                    option.value = nombreBarrio;
-                    option.text = nombreBarrio;
-                    select.appendChild(option);
-                });
-
-                if (typeof $ !== 'undefined' && $.fn.selectpicker) {
-                    $('.selectpicker').selectpicker('refresh');
-                }
-            })
-            .catch(error => {
-                console.error('Error cargando barrios:', error);
-            });
-    });
-</script> -->

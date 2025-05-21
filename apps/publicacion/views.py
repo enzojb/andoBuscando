@@ -17,28 +17,51 @@ class PublicacionListView(ListView):
     model = Publicacion
     template_name = "lista_publicaciones.html"
     context_object_name = "publicaciones"
-    paginated_by = 8
+    paginate_by = 8
 
     def get_queryset(self):
-        queryset = Publicacion.objects.all()
-
+        # Obtener los parámetros de la URL (GET)
+        tipo_propiedad = self.request.GET.get('tipo_propiedad')
         barrio = self.request.GET.get('barrio')
         tipo_operacion = self.request.GET.get('tipo_operacion')
+        moneda = self.request.GET.get('moneda')
         min_precio = self.request.GET.get('min_precio')
         max_precio = self.request.GET.get('max_precio')
+        min_metros_cuadrados = self.request.GET.get('metros_cuadrados')
+        min_ambientes = self.request.GET.get('ambientes')
 
+        # Si hay al menos un filtro, aplicar normalmente
+        queryset = Publicacion.objects.all()
+
+        # Filtrar según los parámetros disponibles
+        if tipo_propiedad:
+            queryset = queryset.filter(tipo_propiedad=tipo_propiedad)
         if barrio:
             queryset = queryset.filter(barrio=barrio)
         if tipo_operacion:
             queryset = queryset.filter(tipo_operacion=tipo_operacion)
+        if moneda:
+            queryset = queryset.filter(moneda__icontains=moneda)
         if min_precio:
             queryset = queryset.filter(precio__gte=min_precio)
         if max_precio:
             queryset = queryset.filter(precio__lte=max_precio)
-       
-                
-        order_by = self.request.GET.get('orderby', 'fecha_creacion')
-        order = self.request.GET.get('order', 'ASC')
+        if min_metros_cuadrados:
+            min_metros_cuadrados = min_metros_cuadrados.strip('[]').split(',')
+            if len(min_metros_cuadrados) == 2:
+                min_metros = int(min_metros_cuadrados[0])
+                max_metros = int(min_metros_cuadrados[1])
+                queryset = queryset.filter(metros_cuadrados__gte=min_metros, metros_cuadrados__lte=max_metros)
+        if min_ambientes:
+            min_ambientes = min_ambientes.strip('[]').split(',')
+            if len(min_ambientes) == 2:
+                min_amb = int(min_ambientes[0])
+                max_amb = int(min_ambientes[1])
+                queryset = queryset.filter(ambientes__gte=min_amb, ambientes__lte=max_amb)
+
+        # Ordenar según los parámetros 'orderby' y 'order' si existen
+        order_by = self.request.GET.get('orderby', 'fecha_creacion')  # por defecto por fecha de creación
+        order = self.request.GET.get('order', 'ASC')  # por defecto en orden ascendente
 
         if order == 'ASC':
             queryset = queryset.order_by(order_by)
@@ -57,11 +80,14 @@ class DashboardView(LoginRequiredMixin, ListView):
         return Publicacion.objects.filter(cliente=self.request.user)
 
 # Vista para cargar busquedas
-class PublicacionCargaView(CreateView):
+class PublicacionCargaView(LoginRequiredMixin, CreateView):
     model = Publicacion
     form_class = CargarPublicacionForm
     template_name = 'carga_publicacion.html'
     success_url = reverse_lazy('acciones_usuario')  
+
+    # Redirigir a la URL de login si no está logueado
+    login_url = reverse_lazy('login') 
 
     def form_valid(self, form):
         form.instance.cliente = self.request.user

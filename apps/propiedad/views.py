@@ -10,6 +10,8 @@ from PIL import Image
 import io
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.contrib.auth.mixins import LoginRequiredMixin
+import requests
+from django.http import JsonResponse
 
 # Create your views here.
 class PropiedadView(ListView):
@@ -20,9 +22,6 @@ class PropiedadView(ListView):
 
 
     def get_queryset(self):
-        # Obtener las propiedades filtradas
-        queryset = Propiedad.objects.all()  # Comienza con todas las propiedades
-
         # Obtener los parámetros de la URL (GET)
         tipo_propiedad = self.request.GET.get('tipo_propiedad')
         barrio = self.request.GET.get('barrio')
@@ -32,6 +31,9 @@ class PropiedadView(ListView):
         max_precio = self.request.GET.get('max_precio')
         min_metros_cuadrados = self.request.GET.get('metros_cuadrados')
         min_ambientes = self.request.GET.get('ambientes')
+
+        # Si hay al menos un filtro, aplicar normalmente
+        queryset = Propiedad.objects.all()
 
         # Filtrar según los parámetros disponibles
         if tipo_propiedad:
@@ -59,7 +61,7 @@ class PropiedadView(ListView):
                 max_amb = int(min_ambientes[1])
                 queryset = queryset.filter(ambientes__gte=min_amb, ambientes__lte=max_amb)
 
-            # Ordenar según los parámetros 'orderby' y 'order' si existen
+        # Ordenar según los parámetros 'orderby' y 'order' si existen
         order_by = self.request.GET.get('orderby', 'fecha_creacion')  # por defecto por fecha de creación
         order = self.request.GET.get('order', 'ASC')  # por defecto en orden ascendente
 
@@ -69,8 +71,6 @@ class PropiedadView(ListView):
             queryset = queryset.order_by(f'-{order_by}')
 
         return queryset
-
-
 
 class CrearPropiedadView(CreateView):
     model = Propiedad
@@ -186,10 +186,6 @@ class MisPropiedadesView(ListView, LoginRequiredMixin):
         
 
         return super().dispatch(request, *args, **kwargs)
-    
-    
-import requests
-from django.http import JsonResponse
 
 def obtener_barrios(request):
     url = "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/barrios/barrios.geojson"
@@ -198,6 +194,10 @@ def obtener_barrios(request):
         response = requests.get(url, timeout=5)
         response.raise_for_status()  # tira excepción si no es 200 OK
         data = response.json()
+
+        # Ordenar los barrios alfabéticamente
+        data['features'].sort(key=lambda f: f['properties']['BARRIO'])
+
         return JsonResponse(data)
     except (requests.RequestException, ValueError) as e:
         return JsonResponse({'error': 'No se pudo obtener los barrios', 'detalle': str(e)}, status=500)

@@ -22,45 +22,34 @@
         <div class="row  pr0 padding-top-40 properties-page">
             <div class="col-md-12 padding-bottom-40 large-search"> 
                 <div class="search-form wow pulse" style="text-align: center;" data-wow-delay="0.8s">
-                    <form action="" method="get" class="form-inline">
-                        <div class="col-md-12">
-                            <div class="form-group">                                   
-                                <select name="barrio" id="barrio-select" class="selectpicker" data-live-search="true" data-live-search-style="begins">
-                                    <option value="" selected disabled>Barrio</option>
-                                </select>
-                            </div>
-                            <div class="form-group">                                     
-                                <select name="tipo_operacion" id="tipo_operacion" class="selectpicker show-tick form-control">
-                                    <option disabled selected> Operacion </option>
-                                    <option value="1">Alquiler</option>
-                                    <option value="2">Compra</option> 
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                    <label for="price-range">Rango de precios:</label>
-                                    <input type="number" name="min_precio" class="form-control" placeholder="Min($)">
-                                    <input type="number" name="max_precio" class="form-control" placeholder="Max($)"><br />
-                            </div>
-                            <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                                <!-- End of  -->                
-                    </form>
+                    {% include 'partials/formulario_busqueda_publicaciones.html' %}
                 </div>
             </div>
 
             <div class="col-md-12 clear"> 
                 <div class="col-xs-10 page-subheader sorting pl0">
                     <ul class="sort-by-list">
-                        <li class="active">
-                            <a href="?orderby=fecha_creacion&order=ASC" class="order_by_date">
-                                Más antiguos primeros<i class="fa fa-sort-amount-asc"></i>					
-                            </a>
-                        </li>
-                        <li>
-                            <a href="?orderby=fecha_creacion&order=DESC" class="order_by_date">
-                                Mas recientes primero<i class="fa fa-sort-amount-desc"></i>
-                            </a>
-                        </li>
+                    {% with request.GET.order as current_order %}
+                    {% with request.GET.urlencode as current_query %}
+                        {% with current_query|cut:'&orderby=fecha_creacion'|cut:'&order=ASC'|cut:'&order=DESC' as clean_query %}
+                            {% if clean_query %}
+                                <li class="{% if request.GET.order == "ASC" or not request.GET.order %}active{% endif %}">
+                                    <a href="?{{ clean_query }}&orderby=fecha_creacion&order=ASC">Más antiguos primero <i class="fa fa-sort-amount-asc"></i></a>
+                                </li>
+                                <li class="{% if request.GET.order == "DESC" %}active{% endif %}">
+                                    <a href="?{{ clean_query }}&orderby=fecha_creacion&order=DESC">Más recientes primero <i class="fa fa-sort-amount-desc"></i></a>
+                                </li>
+                            {% else %}
+                                <li class="active">
+                                    <a href="?orderby=fecha_creacion&order=ASC">Más antiguos primero <i class="fa fa-sort-amount-asc"></i></a>
+                                </li>
+                                <li>
+                                    <a href="?orderby=fecha_creacion&order=DESC">Más recientes primero <i class="fa fa-sort-amount-desc"></i></a>
+                                </li>
+                            {% endif %}
+                            {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
                     </ul><!--/ .sort-by-list-->
                 </div>
                 <div class="col-xs-2 layout-switcher">
@@ -71,6 +60,7 @@
 
             <div class="col-md-12 clear "> 
                 <div id="list-type" class="proerty-th">
+                {% if publicaciones %}
                     {% for publicacion in publicaciones%}
                     <div class="col-sm-6 col-md-3 p0">
                         <div class="box-two proerty-item">
@@ -127,20 +117,34 @@
                         </div>
                     </div> 
                     {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning mt-4">
+                        No se encontraron resultados para los filtros seleccionados.
+                    </div>
+                {% endif %}
 
                 </div>
             </div>
 
             <div class="col-md-12 clear"> 
                 <div class="pull-right">
-                    <div class="pagination">
-                        <ul>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                        </ul>
-                    </div>
+                    <ul>
+                        {% if publicaciones.has_previous %}
+                            <li><a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ publicaciones.previous_page_number }}">Anterior</a></li>
+                        {% endif %}
+                    
+                        {% for num in publicaciones.paginator.page_range %}
+                            {% if publicaciones.number == num %}
+                                <li class="active"><span>{{ num }}</span></li>
+                            {% else %}
+                                <li><a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    
+                        {% if publicaciones.has_next %}
+                            <li><a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ publicaciones.next_page_number }}">Siguiente</a></li>
+                        {% endif %}
+                    </ul>
                 </div>                
             </div>
         </div>                
