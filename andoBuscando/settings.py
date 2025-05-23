@@ -81,17 +81,33 @@ WSGI_APPLICATION = 'andoBuscando.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+from decouple import config
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'andoBuscando',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+USE_LIVE_DB = config('USE_LIVE_DB', default=False, cast=bool)
+
+if USE_LIVE_DB:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('LIVE_DB_NAME'),
+            'USER': config('LIVE_DB_USER'),
+            'PASSWORD': config('LIVE_DB_PASSWORD'),
+            'HOST': config('LIVE_DB_HOST'),
+            'PORT': config('LIVE_DB_PORT'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('LOCAL_DB_NAME'),
+            'USER': config('LOCAL_DB_USER'),
+            'PASSWORD': config('LOCAL_DB_PASSWORD'),
+            'HOST': config('LOCAL_DB_HOST'),
+            'PORT': config('LOCAL_DB_PORT'),
+        }
+    }
+# postgresql://andobuscando_user:PmbOtSC2Mxs4RQ8ZTPkEOeS1O9YzS4Fj@dpg-d0ls882dbo4c73c82650-a.oregon-postgres.render.com/andobuscando
 
 
 # Password validation
