@@ -1,8 +1,10 @@
 from django import forms
+from cloudinary.forms import CloudinaryFileField
 from apps.propiedad.models import Propiedad
 
 
 class CrearPropiedadForm(forms.ModelForm):
+    foto = CloudinaryFileField()
     class Meta:
         model = Propiedad
         fields = ['titulo','foto','moneda','precio','tipo_operacion','descripcion','barrio','direccion','tipo_propiedad','ambientes','metros_cuadrados']
