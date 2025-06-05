@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.publicacion.views import PublicacionListView, DashboardView, PublicacionCargaView, ContactarUsuarioView, PublicacionEdicionView, PublicacionEliminacionView
+from apps.publicacion.views import PublicacionListView, DashboardView, PublicacionCargaView, ContactarUsuarioView, PublicacionEdicionView, PublicacionEliminacionView, PoliticasView, ContactoView, FaqView
 from . import views
 
 urlpatterns=[
@@ -8,5 +8,8 @@ urlpatterns=[
     path("cargar_publicacion/", PublicacionCargaView.as_view(), name="cargar_publicacion"),
     path("contactar_usuario/", ContactarUsuarioView.as_view() , name="contactar_usuario"),
     path("editar_publicacion/<int:pk>/", PublicacionEdicionView.as_view(),name="editar_publicacion"),
-    path("eliminar_publicacion/<int:pk>/", PublicacionEliminacionView.as_view(), name="eliminar_publicacion")
+    path("eliminar_publicacion/<int:pk>/", PublicacionEliminacionView.as_view(), name="eliminar_publicacion"),
+    path("politicas/", PoliticasView.as_view(), name="politicas"),
+    path("contacto/", ContactoView.as_view(), name="contacto"),
+    path("faq/", FaqView.as_view(), name="faq"),
 ]

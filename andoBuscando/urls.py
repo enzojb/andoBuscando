@@ -28,6 +28,9 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name='logout'),
     path('usuario/', include('apps.usuario.urls'), name='usuario'),
     path('publicacion/', include('apps.publicacion.urls'), name='publicacion'),
+    path('terminos/', include('apps.publicacion.urls'), name='terminos'),
+    path('contacto/', include('apps.publicacion.urls'), name='contacto'),
+    path('faq/', include('apps.publicacion.urls'), name='faq'),
     path('propiedad/', include('apps.propiedad.urls'), name='propiedad'),
     path('contador/', include('apps.contador.urls'), name='contador'),
 ]

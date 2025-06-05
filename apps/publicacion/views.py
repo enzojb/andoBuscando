@@ -141,3 +141,28 @@ class PublicacionEliminacionView(DeleteView):
         publicacion.delete()
         return redirect(self.success_url)
 
+class PoliticasView(TemplateView):
+    template_name = 'politicas.html'
+    redirect_field_name = "redirect_to"
+    raise_exception = False
+
+    def get(self,request):
+        return self.render_to_response({})
+    
+
+class ContactoView(TemplateView):
+    template_name = 'contacto.html'
+    redirect_field_name = "redirect_to"
+    raise_exception = False
+
+    def get(self,request):
+        return self.render_to_response({})
+
+
+class FaqView(TemplateView):
+    template_name = 'faq.html'
+    redirect_field_name = "redirect_to"
+    raise_exception = False
+
+    def get(self,request):
+        return self.render_to_response({})
