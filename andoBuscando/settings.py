@@ -50,6 +50,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary',
+    'cloudinary_storage',
 ]
 
 LOCAL_APPS = [
@@ -185,3 +186,4 @@ CLOUDINARY_STORAGE = {
     'API_KEY': config('API_KEY'),
     'API_SECRET': config('API_SECRET'),
 }
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
