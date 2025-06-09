@@ -18,7 +18,7 @@ class PropiedadView(ListView):
     model = Propiedad
     template_name = 'propiedades.html'
     context_object_name = 'propiedades'
-    paginate_by = 8  # Paginación de 10 resultados por página
+    paginate_by = 12  # Paginación de 10 resultados por página
 
 
     def get_queryset(self):
