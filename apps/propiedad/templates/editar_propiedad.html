@@ -101,8 +101,8 @@
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_barrio">Barrio :</label>
-                                  <select name="barrio" id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ propiedad.barrio }}">
-
+                                  <select name="barrio" id="barrio-select" class="selectpicker" data-live-search="true" data-live-search-style="begins" value="{{ propiedad.barrio }}">
+                                    <option value="" selected>{{ propiedad.barrio }}</option>
                                   </select>
                               </div>
                           </div>
@@ -124,13 +124,23 @@
                                 </select>
                               </div>
                           </div>
-                          
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label for="id_metros_cuadrados">Metros cuadrados de la propiedad (m2) :</label>
+                                  <input type="number" name="metros_cuadrados"  class="span2" value="{{propiedad.metros_cuadrados}}" min="0" 
+                                  data-slider-max="1200" data-slider-step="1" 
+                                  data-slider-value="{{propiedad.metros_cuadrados}}" id="property-geo" ><br />
+                           <b class="pull-left color">20m2</b> 
+                           <b class="pull-right color">1200m2</b>
+                              </div>
+                          </div>
+                          <!--
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="property-images">sube mas imagenes :(Proximamente)</label>
                                   <input class="form-control" type="file" id="property-images" disabled>
                               </div>
-                          </div>
+                          </div>-->
                       </div>
                       <div class="col-sm-12 padding-top-15">
                           <div class="col-sm-6">
@@ -144,7 +154,7 @@
                               </div>
                           </div>
 
-                          <div class="col-sm-6">
+                          <!--<div class="col-sm-6">
                               <div class="form-group">
                                   <label for="id_metros_cuadrados">Metros cuadrados de la propiedad (m2) :</label>
                                   <input type="number" name="metros_cuadrados"  class="span2" value="{{propiedad.metros_cuadrados}}" min="0" 
@@ -153,7 +163,7 @@
                            <b class="pull-left color">20m2</b> 
                            <b class="pull-right color">1200m2</b>
                               </div>
-                          </div>
+                          </div> -->
                       </div>
 
                       
