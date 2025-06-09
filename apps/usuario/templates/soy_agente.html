@@ -59,17 +59,8 @@
                             </div>
 
                             <div class="clear">
-                                <div class="col-sm-3 col-sm-offset-1">
-                                    <div class="picture-container">
-                                        <div class="picture">
-                                            <img src="{% static 'assets/img/avatar.jpg' %}" class="picture-src" id="wizardPicturePreview" title=""/>
-                                            <input type="file" id="wizard-picture" disabled>
-                                        </div>
-                                        <h6>Imagen de tu matrícula</h6>
-                                    </div>
-                                </div>
 
-                                <div class="col-sm-3 padding-top-25">
+                                <div class="col-sm-12 text-center padding-top-25">
                                     <div class="form-group">
                                         <label for="{{ form.is_agente.id_for_label }}">Soy Agente <small>(requerido)</small></label>
                                         <input type="checkbox" name="is_agente" id="{{ form.is_agente.id_for_label }}" class="form-control" {% if user.is_agente %}checked disabled{% endif %} required>
@@ -77,10 +68,10 @@
                                     
                                     <div class="form-group">
                                         <label for="{{ form.matricula.id_for_label }}">Número de matrícula <small>(requerido)</small></label>
-                                        <input type="text" name="matricula" id="{{ form.matricula.id_for_label }}" class="form-control" placeholder="12345..." {% if user.is_agente %}value="{{ user.matricula }}" disabled{% endif %} required>
+                                        <input type="text" name="matricula" id="{{ form.matricula.id_for_label }}" class="form-control input-agente" style="margin: 0 auto;
+    width: 25%;" placeholder="12345..." {% if user.is_agente %}value="{{ user.matricula }}" disabled{% endif %} required>
                                     </div>
                                 </div>
-
                             <div class="clear">
                                 <br>
                                 {% if user.is_agente %}
