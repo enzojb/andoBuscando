@@ -9,7 +9,7 @@ class PropiedadAdmin(admin.ModelAdmin):
     ordering = ('-fecha_creacion',)
 
     fieldsets = (
-        (None, {'fields': ('direccion', 'barrio', 'tipo_propiedad','tipo_operacion','foto', 'precio', 'moneda')}),
+        (None, {'fields': ('titulo','direccion', 'barrio', 'tipo_propiedad','tipo_operacion','foto', 'precio', 'moneda')}),
         ('Detalles de la propiedad', {'fields': ('descripcion', 'ambientes', 'metros_cuadrados')}),
     )
 
