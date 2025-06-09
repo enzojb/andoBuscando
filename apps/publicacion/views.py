@@ -17,7 +17,7 @@ class PublicacionListView(ListView):
     model = Publicacion
     template_name = "lista_publicaciones.html"
     context_object_name = "publicaciones"
-    paginate_by = 8
+    paginate_by = 12
 
     def get_queryset(self):
         # Obtener los parámetros de la URL (GET)
